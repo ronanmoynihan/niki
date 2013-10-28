@@ -19,10 +19,9 @@ angular.module('services.linkService', []).
                  
                 var html = xhr.responseText; 
                 html = html.replace(/<img[^>]*>/g,"");
-                var safehtml = $.parseHTML( html ) 
+                html = $.parseHTML( html ) 
             
-               
-                console.log($(safehtml).find( "a" ));   
+                console.log($(html).find( "a" ));   
                
             }
         }
