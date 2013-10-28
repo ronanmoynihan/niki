@@ -264,10 +264,12 @@ function handleLoadCommit(event) {
     
     for (var i=0;i<100;i++)
     { 
+        
+        document.querySelector('webview').executeScript({code: "document.links[" + i + "].innerHTML+='.' + " + i.toString()});
 
-     document.querySelector('webview').executeScript({code: "document.links[" + i + "].setAttribute('data-hint','" + i + "')"});
+//     document.querySelector('webview').executeScript({code: "document.links[" + i + "].setAttribute('data-hint','" + i + "')"});
     
-     document.querySelector('webview').executeScript({code: "document.links[" + i + "].className+= ' ' + 'hint--bottom hint--always hint--success'"});
+ //    document.querySelector('webview').executeScript({code: "document.links[" + i + "].className+= ' ' + 'hint--right hint--always hint--success'"});
     }
     
     
