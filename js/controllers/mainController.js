@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('controllers.mainController', []).
- controller('mainController', ['speechService','linkService',function(speechService, linkService) {
+ controller('mainController', ['$scope','speechService','linkService',function($scope, speechService, linkService) {
 
        speechService.startSpeech();
       
