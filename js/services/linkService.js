@@ -16,12 +16,19 @@ angular.module('services.linkService', []).
              xhr.open("GET", url, true);
              xhr.onreadystatechange = function() {
              if (xhr.readyState == 4) {
-                //console.log(xhr.responseText);   
-                //document.querySelector('webview').src = xhr.responseText;
+                 
+                var html = xhr.responseText; 
+                html = html.replace(/<img[^>]*>/g,"");
+                var safehtml = $.parseHTML( html ) 
+            
+               
+                console.log($(safehtml).find( "a" ));   
+               
             }
         }
         xhr.send();
        
+           
       
     }
   }).

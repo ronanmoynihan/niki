@@ -257,24 +257,6 @@ function handleLoadCommit(event) {
   document.querySelector('#forward').disabled = !webview.canGoForward();
 
 
-    
-   // webview.executeScript({ code: "document.body.scrollTop += 100" });
- 
- //document.querySelector('webview').executeScript({code: "document.links[0].innerHTML='booyah';document.links[1].innerHTML='booyah'"});
-    
-    for (var i=0;i<100;i++)
-    { 
-        
-        document.querySelector('webview').executeScript({code: "document.links[" + i + "].innerHTML+='.' + " + i.toString()});
-
-//     document.querySelector('webview').executeScript({code: "document.links[" + i + "].setAttribute('data-hint','" + i + "')"});
-    
- //    document.querySelector('webview').executeScript({code: "document.links[" + i + "].className+= ' ' + 'hint--right hint--always hint--success'"});
-    }
-    
-    
-    
-    document.querySelector('webview').insertCSS({file:"hint.css"},function(){console.log('css inserted');});
 
 }
 
