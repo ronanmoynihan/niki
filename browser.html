@@ -4,38 +4,27 @@
     <link rel="stylesheet" href="browser.css">
   </head>    
   <body>
-    <div ng-controller="mainController">
-    <div id="controls">
-
-      <button id="back" title="Go Back">&#9664;</button>
-      <button id="forward" title="Go Forward">&#9654;</button>
-      <button id="home" title="Go Home">&#8962;</button>
-      <button id="reload" title="Reload">&#10227;</button>
-      <button id="terminate" title="Simulate Crash">&#9760;</button>
-
-      <form id="location-form">
-        <div id="center-column">
-          <input id="location" type="text" value="http://www.rte.ie/">
+        <div ng-controller="mainController">
+            <div id="controls">
+              <form id="location-form">
+                <div id="center-column">
+                  <input id="location" type="text" value="{{url}}">
+                </div>
+              </form>   
+            </div>
+              
+            <webview src="{{url}}" style="width:640px; height:480px"></webview>
         </div>
-        <input type="submit" value="Go">
-      </form>   
-
-        </div>
-          
-        <webview src="http://www.rte.ie/" style="width:640px; height:480px"></webview>
-        
+      
         <script src="lib/angular/angular.js"></script>
         <script src="js/app.js"></script>
         <script src="js/services/speechService.js"></script>
-        <script src="js/services/linkService.js"></script>
+        <script src="js/services/htmlService.js"></script>
         <script src="js/controllers/mainController.js"></script>
         <script src="js/filters.js"></script>
         <script src="js/directives.js"></script>
-          
+              
         <script src="jquery.min.js"></script>
         <script src="browser.js"></script>
-    
-        </div>
-      </body>
-      
+    </body>
 </html>
