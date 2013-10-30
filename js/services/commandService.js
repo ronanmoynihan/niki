@@ -18,7 +18,7 @@ angular.module('services.commandService', []).
         
         // 1 - Number
         action.type = "number";
-        action.number = speechInput;
+        action.number = speechInput.trim();
         
         return action;
 

@@ -22,7 +22,7 @@ angular.module('controllers.mainController', []).
                     // this will cause an error as 500 will be too many
                     for (var i=0;i<500;i++)
                     { 
-                         webview.executeScript({code: "document.links[" + i + "].innerHTML+='<span style=color:red;font-size:small;background-color:lightblue>" + i + "</span>' "});
+                         webview.executeScript({code: "try{document.links[" + i + "].innerHTML+='<span style=color:red;font-size:small;background-color:lightblue>" + i + "</span>' }catch(err){}"});
                         
                         // webview.executeScript({code: "document.links[" + i + "].innerHTML+='.' + " + i.toString()});
                         //   webview.executeScript({code: "document.links[" + i + "].setAttribute('data-hint','" + i + "')"});   

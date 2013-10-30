@@ -16,7 +16,7 @@ angular.module('services.htmlService', []).
             html = html.replace(/<img[^>]*>/g,"");
             var doc = document.implementation.createHTMLDocument();
             html = html.split("<body")[1].split(">").slice(1).join(">").split("</body>")[0];
-            var doc1 = (new DOMParser).parseFromString(html);
+            var doc1 = (new DOMParser).parseFromString(html,'text/html');
             
             doc.body.innerHTML = html;
             console.log(doc.links);

@@ -16,5 +16,5 @@ angular.module('myApp', [
   }]).
   run(function($rootScope, speechService, htmlService) {
       
-      $rootScope.url = "http://www.bbc.com";
+      $rootScope.url = "http://www.rte.ie/";
   });
