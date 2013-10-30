@@ -102,6 +102,7 @@ function handleLoadCommit(event) {
   }
 
   //document.querySelector('#location').value = event.url;
+  console.log(event.url);    
 
   //var webview = document.querySelector('webview');
   //document.querySelector('#back').disabled = !webview.canGoBack();
