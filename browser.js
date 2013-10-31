@@ -5,46 +5,18 @@ var isLoading = false;
 
 onload = function() {
 
-
   var webview = document.querySelector('webview');
   doLayout();
 
- /* document.querySelector('#back').onclick = function() {
+ /* 
     webview.back();
-
-  };
-
-  document.querySelector('#forward').onclick = function() {
     webview.forward();
-  };
-
-  document.querySelector('#home').onclick = function() {
     navigateTo('http://www.google.com/');
-  };
-
-  document.querySelector('#reload').onclick = function() {
-    if (isLoading) {
-      webview.stop();
-    } else {
-      webview.reload();
-    }
-  };
-  document.querySelector('#reload').addEventListener(
-    'webkitAnimationIteration',
-    function() {
-      if (!isLoading) {
-        document.body.classList.remove('loading');
-      }
-    });
-
-  document.querySelector('#terminate').onclick = function() {
+    webview.stop();
+    webview.reload();
     webview.terminate();
-  };
 
-  document.querySelector('#location-form').onsubmit = function(e) {
-    e.preventDefault();
-    navigateTo(document.querySelector('#location').value);
-  }; */
+ */
 
   webview.addEventListener('exit', handleExit);
   webview.addEventListener('loadstart', handleLoadStart);
@@ -52,15 +24,12 @@ onload = function() {
   webview.addEventListener('loadabort', handleLoadAbort);
   webview.addEventListener('loadredirect', handleLoadRedirect);
   webview.addEventListener('loadcommit', handleLoadCommit);
- 
-
 };
+
 
 function navigateTo(url) {
   resetExitedState();
-  document.querySelector('webview').src = url;
-    
-   
+  document.querySelector('webview').src = url;  
 }
 
 function doLayout() {
@@ -71,8 +40,6 @@ function doLayout() {
   var windowHeight = document.documentElement.clientHeight;
   var webviewWidth = windowWidth;
   var webviewHeight = windowHeight - controlsHeight;
-   
-  
 
   webview.style.width = webviewWidth + 'px';
   webview.style.height = webviewHeight + 'px';
@@ -102,18 +69,12 @@ function handleLoadCommit(event) {
   }
 
   //document.querySelector('#location').value = event.url;
+  
+    // set the scope url here.
   console.log(event.url);    
-
-  //var webview = document.querySelector('webview');
-  //document.querySelector('#back').disabled = !webview.canGoBack();
-  //document.querySelector('#forward').disabled = !webview.canGoForward();
-
-
     
   //  webview.executeScript({ code: "document.body.scrollTop += 100" });
  
-
-
 }
 
 function handleLoadStart(event) {

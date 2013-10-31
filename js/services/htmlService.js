@@ -12,6 +12,14 @@ angular.module('services.htmlService', []).
             
             var doc = document.implementation.createHTMLDocument
             
+            // Estimate links as # of a's plus 100 ??????
+            // Not sure why this count is different to document.links
+            console.log('counting links');
+            var numberOfLinks = html.match(/<a/g).length;
+            var estimate = numberOfLinks + 100; 
+            console.log('Estimated number of links is: ' + estimate);  
+            //$scope.numberOfLinks = estimate;
+            
 
             html = html.replace(/<img[^>]*>/g,"");
             var doc = document.implementation.createHTMLDocument();

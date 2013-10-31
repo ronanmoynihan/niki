@@ -3,36 +3,21 @@
 /* Controllers */
 
 angular.module('controllers.mainController', []).
- controller('mainController', ['$scope','$http','speechService','htmlService','commandService',
-            function($scope,$http, speechService, htmlService,commandService) {
+ controller('mainController', ['$scope','$http','speechService','htmlService','commandService','webviewService',
+            function($scope,$http, speechService, htmlService,commandService, webviewService) {
                 
             var url = $scope.url;
+                
+            // 1. After GO has been said load the webview to the URL.
+            // 2  Once loaded show labels, wait for next command etc.
                 
             var promise = $http.get(url).then(function (response) {
           
                     $scope.pageLinks = htmlService.getAllLinks(response.data);
                     console.log($scope.pageLinks[115]);
-                
-                    console.log($scope.pageLinks);
-                
-                    var webview = document.querySelector('webview');
                    
-                    //webview.executeScript({code: " document.getElementById('google-search-searchterm').value = 'dd'"});
-               
-                    // this will cause an error as 500 will be too many
-                    for (var i=0;i<500;i++)
-                    { 
-                         webview.executeScript({code: "try{document.links[" + i + "].innerHTML+='<span style=color:red;font-size:small;background-color:lightblue>" + i + "</span>' }catch(err){}"});
-                        
-                        // webview.executeScript({code: "document.links[" + i + "].innerHTML+='.' + " + i.toString()});
-                        //   webview.executeScript({code: "document.links[" + i + "].setAttribute('data-hint','" + i + "')"});   
-                        //   webview.executeScript({code: "document.links[" + i + "].className+= ' ' + 'hint--right     hint--always hint--success'"});
-                    }
-            
-                    document.querySelector('webview').insertCSS({file:"hint.css"},function(){console.log('css inserted');});
-
-                    // webview.executeScript({code: "document.links[5].click()"});
-                
+                    webviewService.showNumbers();
+                   
                     // Now we have all the links to map on.
                     // We are ready for speech recognition to begin.
                 
@@ -78,7 +63,7 @@ angular.module('controllers.mainController', []).
                             
                           // Execute the Action    
                           if(action.type=="number"){
-                              webview.executeScript({code: "document.links[" + action.number + "].click()"});
+                             webviewService.triggerLinkClick(action.number);
                           }
                         
                           console.log(action);

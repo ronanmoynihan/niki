@@ -6,7 +6,8 @@ angular.module('myApp', [
     'myApp.filters', 
     'services.speechService',
     'services.htmlService',
-    'services.commandService', 
+    'services.commandService',
+    'services.webviewService',
     'myApp.directives', 
     'controllers.mainController'
 ]).
@@ -16,5 +17,5 @@ angular.module('myApp', [
   }]).
   run(function($rootScope, speechService, htmlService) {
       
-      $rootScope.url = "http://www.rte.ie/";
+      $rootScope.url = "http://www.bbc.com/";
   });
