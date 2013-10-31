@@ -7,6 +7,11 @@ angular.module('controllers.mainController', []).
             function($scope,$http, speechService, htmlService,commandService, webviewService) {
                 
             var url = $scope.url;
+            webviewService.initializeWebview();
+            webviewService.navigateTo($scope.url);
+            // Whenever this is called we need to wait until the page is loaded
+            // before resuming
+            // Can use a scope variable which is set to loading to check.                
                 
             // 1. After GO has been said load the webview to the URL.
             // 2  Once loaded show labels, wait for next command etc.
