@@ -1,12 +1,29 @@
 'use strict';
 
 
+
+var isLoading = false;
+
+
 /* Webview Service */
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
 angular.module('services.webviewService', []).
   value('webviewService', {
+      
+      
+        isWebviewLoading : function(){
+            
+            try{
+                webview.executeScript({code: ""}); 
+                return false;
+            }
+            catch(ex) {
+                return true;
+            }
+           
+        },
     
         showNumbers: function() {
             
@@ -14,17 +31,15 @@ angular.module('services.webviewService', []).
                        
              for (var i=0;i<500;i++)
                         { 
-                             webview.executeScript({code: "try{document.links[" + i + "].innerHTML+='<span style=color:#FF3A89;font-size:small;background-color:#C8FF00>" + i + "</span>' }catch(err){}"});
+                            var code = "try{document.links[" + i + "].innerHTML+='<span style=color:#FF3A89;font-size:small;background-color:#C8FF00>" + i + "</span>' }catch(err){}";
                             
-                            // webview.executeScript({code: "document.links[" + i + "].innerHTML+='.' + " + i.toString()});
-                            //   webview.executeScript({code: "document.links[" + i + "].setAttribute('data-hint','" + i + "')"});   
+                             webview.executeScript({code: code });
+                               
                             //   webview.executeScript({code: "document.links[" + i + "].className+= ' ' + 'hint--right     hint--always hint--success'"});
                         }
             
             //  document.querySelector('webview').insertCSS({file:"hint.css"},function(){console.log('css inserted');});
-            //  webview.executeScript({code: " document.getElementById('google-search-searchterm').value = 'dd'"}); 
-            //  webview.executeScript({code: "document.links[5].click()"});
-                
+            //  webview.executeScript({code: " document.getElementById('google-search-searchterm').value = 'dd'"});                
         },
       
       
@@ -35,10 +50,14 @@ angular.module('services.webviewService', []).
       
       
      navigateTo: function (url) {
+         isLoading = true;
         document.querySelector('webview').src = url;  
      },
       
     initializeWebview: function () {
+        
+
+      
        var webview = document.querySelector('webview');
           var controls = document.querySelector('#controls');
           var controlsHeight = controls.offsetHeight;
@@ -70,6 +89,9 @@ angular.module('services.webviewService', []).
         }
         
           var handleLoadCommit = function (event) {
+              
+             
+              console.log('committed');
               resetExitedState();
               if (!event.isTopLevel) {
                 return;
@@ -78,7 +100,8 @@ angular.module('services.webviewService', []).
               //document.querySelector('#location').value = event.url;
               
                 // set the scope url here.
-              console.log(event.url);    
+              console.log(event.url);
+              
                 
               //  webview.executeScript({ code: "document.body.scrollTop += 100" });
          
@@ -86,7 +109,7 @@ angular.module('services.webviewService', []).
           
           var handleLoadStart = function(event) {
                   document.body.classList.add('loading');
-                 // isLoading = true;
+                  isLoading = true;
                 
                   resetExitedState();
                   if (!event.isTopLevel) {
@@ -97,6 +120,7 @@ angular.module('services.webviewService', []).
                 }
           
          var handleLoadStop =  function(event) {
+             console.log('handleLoadStop');
           // We don't remove the loading class immediately, instead we let the animation
           // finish, so that the spinner doesn't jerkily reset back to the 0 position.
           isLoading = false;
@@ -133,3 +157,4 @@ angular.module('services.webviewService', []).
       
   }).
   value('version', '0.1');
+

@@ -8,7 +8,11 @@ angular.module('controllers.mainController', []).
                 
             var url = $scope.url;
             webviewService.initializeWebview();
-            webviewService.navigateTo($scope.url);
+            webviewService.navigateTo($scope.url); 
+                
+            //while(webviewService.isWebviewLoading()==true)
+            //{console.log('waiting');}
+                
             // Whenever this is called we need to wait until the page is loaded
             // before resuming
             // Can use a scope variable which is set to loading to check.                
@@ -18,10 +22,13 @@ angular.module('controllers.mainController', []).
                 
             var promise = $http.get(url).then(function (response) {
           
+                    // Need to do a check here if the web page is loaded
+                    // and if the setting for showNumbers is  true
+                    webviewService.showNumbers();
+                
+                
                     $scope.pageLinks = htmlService.getAllLinks(response.data);
                     console.log($scope.pageLinks[115]);
-                   
-                    webviewService.showNumbers();
                    
                     // Now we have all the links to map on.
                     // We are ready for speech recognition to begin.
@@ -70,6 +77,20 @@ angular.module('controllers.mainController', []).
                           if(action.type=="number"){
                              webviewService.triggerLinkClick(action.number);
                           }
+                            
+                            switch(action.commandText)
+                            {
+                                case "SHOWNUMBERS":
+                                  webviewService.showNumbers();
+                                  break;
+                                case "SCROLLDOWN":
+                                 //
+                                  break;
+                                case "GO":
+                                     webviewService.navigateTo($scope.url);
+                                default:
+                                 //
+                            }
                         
                           console.log(action);
                             

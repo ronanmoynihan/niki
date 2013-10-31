@@ -13,12 +13,16 @@ angular.module('services.commandService', []).
         var action = {
                 type: "",
                 url: "",
-                number: ""
+                number: "",
+                commandText: ""
             }
         
         // 1 - Number
         action.type = "number";
         action.number = speechInput.trim();
+        
+        action.type = "command";
+        action.commandText = "GO";
         
         return action;
 
