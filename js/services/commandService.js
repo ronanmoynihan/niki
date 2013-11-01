@@ -20,13 +20,22 @@ angular.module('services.commandService', []).
                 commandText: ""
             }    
         
-        if(speechInput == "go"){
-            action.type = "command";
-            action.commandText = "go";
-        }
-        else{
-             action.type = "number";
-             action.number = speechInput;
+        switch(speechInput){
+            case "go":
+                action.type = "command";
+                action.commandText = "go";
+                break;
+            case "number":
+                action.type = "number";
+                action.number = speechInput;
+                break;
+            case "sn":
+                action.commandText = "shownumbers";
+                break;            
+            default:
+                 action.type = "number";
+                 action.number = speechInput;
+                         //
         }
         
         return action;

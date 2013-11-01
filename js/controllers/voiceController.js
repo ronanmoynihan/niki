@@ -8,6 +8,15 @@ angular.module('controllers.voiceController', []).
                 
             var url = $scope.url;
             webviewService.initializeWebview();
+                
+            webviewService.navigateTo($scope.url);
+            var promise = $http.get($scope.url).then(function (response) {
+                                 
+                     webviewService.showNumbers(); 
+                        //$scope.pageLinks = htmlService.getAllLinks(response.data);
+                        //console.log($scope.pageLinks[115]);
+
+                  });
            
             var recognition = new webkitSpeechRecognition();
             recognition.continuous = true;
