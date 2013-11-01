@@ -36,12 +36,45 @@ angular.module('services.commandService', []).
         // 4. if still no match, return no action found for input
         
       
-    } // end getAction
+    }, // end getAction
       
       
-    doAction = function(webviewService){
+    doAction: function(webviewService,url,speechInput){
       
-      
+                  var action = {
+                        type: "",
+                        url: "",
+                        number: "",
+                        commandText: ""
+                    }
+                
+                // 1 - Number
+                action.type = "number";
+                action.number = speechInput.trim();
+                
+                action.type = "command";
+                action.commandText = "GO";
+        
+                  if(action.type=="number"){
+                     webviewService.triggerLinkClick(action.number);
+                  }
+                    
+                    switch(action.commandText)
+                    {
+                        case "SHOWNUMBERS":
+                          webviewService.showNumbers();
+                          break;
+                        case "SCROLLDOWN":
+                         //
+                          break;
+                                   
+                        default:
+                         //
+                    }
+            
+            console.log("returning from doAction");
+            return "done";
+                
     }
       
       
