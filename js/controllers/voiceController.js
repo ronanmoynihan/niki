@@ -2,8 +2,8 @@
 
 /* Controllers */
 
-angular.module('controllers.mainController', []).
- controller('mainController', ['$scope','$http','speechService','htmlService','commandService','webviewService',
+angular.module('controllers.voiceController', []).
+ controller('voiceController', ['$scope','$http','speechService','htmlService','commandService','webviewService',
             function($scope,$http, speechService, htmlService,commandService, webviewService) {
                 
             var url = $scope.url;

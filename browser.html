@@ -2,9 +2,19 @@
 <html lang="en" ng-app="myApp" ng-csp>
   <head>
     <link rel="stylesheet" href="browser.css">
+    <style type="text/css">
+        #overlayDiv {
+            position: fixed;
+            top:500px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index:99;
+        }  
+    </style>
   </head>    
   <body>
-        <div ng-controller="mainController">
+        <div ng-controller="voiceController">
             <div id="controls">
               <form id="location-form">
                 <div id="center-column">
@@ -15,6 +25,12 @@
               
             <webview style="width:640px; height:480px"></webview>
         </div>
+        <div id="overlayDiv">
+            <form ng-submit="submit()" ng-controller="textController">
+              
+                <input id="textInput" type="text" ng-model="textInput"/>
+            </form>
+        </div>
       
       
         <script src="lib/angular/angular.js"></script>
@@ -24,7 +40,8 @@
         <script src="js/services/commandService.js"></script>
         <script src="js/services/webviewService.js"></script>
         <script src="js/factories/actionFactory.js"></script>
-        <script src="js/controllers/mainController.js"></script>
+        <script src="js/controllers/voiceController.js"></script>
+        <script src="js/controllers/textController.js"></script>
         <script src="js/filters.js"></script>
         <script src="js/directives.js"></script>
               

@@ -10,19 +10,24 @@ angular.module('services.commandService', []).
     
     getAction: function(speechInput,pageLinks) {
         
+        speechInput = speechInput.trim().toLowerCase();
+             
+        
         var action = {
                 type: "",
                 url: "",
                 number: "",
                 commandText: ""
-            }
+            }    
         
-        // 1 - Number
-        action.type = "number";
-        action.number = speechInput.trim();
-        
-        action.type = "command";
-        action.commandText = "GO";
+        if(speechInput == "go"){
+            action.type = "command";
+            action.commandText = "go";
+        }
+        else{
+             action.type = "number";
+             action.number = speechInput;
+        }
         
         return action;
 
