@@ -36,6 +36,17 @@ angular.module('services.commandService', []).
         // 4. if still no match, return no action found for input
         
       
-    } // end Speech
+    } // end getAction
+      
+      
+    doAction = function(webviewService){
+      
+      
+    }
+      
+      
+      
+      
+      
   }).
   value('version', '0.1');
