@@ -51,6 +51,10 @@ angular.module('controllers.voiceController', []).
               var interim_transcript = '';
               for (var i = event.resultIndex; i < event.results.length; ++i) {
                 if (event.results[i].isFinal) {
+                    
+                    $scope.$apply(function () {
+                           $scope.speechInput = event.results[i][0].transcript;
+                    });
     
                   console.log(event.results[i][0].transcript);
                     
@@ -93,7 +97,9 @@ angular.module('controllers.voiceController', []).
                   console.log(action);
                     
                 } else {
-       
+                    $scope.$apply(function () {
+                           $scope.speechInput = event.results[i][0].transcript;
+                    });
                   console.log(event.results[i][0].transcript);
                 }
               }
