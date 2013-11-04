@@ -9,7 +9,7 @@ angular.module('controllers.textController', []).
          $scope.submit = function(){   
                 
                 var input = $scope.textInput;
-                var url = "https://facebook.com";
+                var url = "http://coursera.org";
                 console.log(input);
      
                   var action = commandService.getAction(input,$scope.pageLinks);

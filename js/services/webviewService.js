@@ -3,6 +3,7 @@
 
 
 var isLoading = false;
+var webview = document.querySelector('webview');
 
 
 /* Webview Service */
@@ -27,7 +28,7 @@ angular.module('services.webviewService', []).
     
         showNumbers: function() {
             
-             var webview = document.querySelector('webview');
+             //var webview = document.querySelector('webview');
                        
              for (var i=0;i<500;i++)
                         { 
@@ -44,10 +45,18 @@ angular.module('services.webviewService', []).
       
       
       triggerLinkClick: function(linkNumber){    
-             var webview = document.querySelector('webview');
+            // var webview = document.querySelector('webview');
              webview.executeScript({code: "document.links[" + linkNumber+ "].click()"});     
       },
       
+      scrollDown: function(){  
+        webview.executeScript({ code: "document.body.scrollTop += 700" });   
+      },
+      
+      
+      scrollUp: function(){  
+        webview.executeScript({ code: "document.body.scrollTop -= 700" });   
+      },
       
      navigateTo: function (url) {
          isLoading = true;
@@ -58,7 +67,7 @@ angular.module('services.webviewService', []).
         
 
       
-       var webview = document.querySelector('webview');
+      // var webview = document.querySelector('webview');
           var controls = document.querySelector('#controls');
           var controlsHeight = controls.offsetHeight;
           var windowWidth = document.documentElement.clientWidth;
@@ -69,7 +78,7 @@ angular.module('services.webviewService', []).
           webview.style.width = webviewWidth + 'px';
           webview.style.height = webviewHeight + 'px';
         
-      var webview = document.querySelector('webview');
+    //  var webview = document.querySelector('webview');
         
         
       var handleExit = function(event) {

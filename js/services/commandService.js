@@ -21,6 +21,7 @@ angular.module('services.commandService', []).
             }    
         
         switch(speechInput){
+            case "goal":
             case "go":
                 action.type = "command";
                 action.commandText = "go";
@@ -31,7 +32,14 @@ angular.module('services.commandService', []).
                 break;
             case "sn":
                 action.commandText = "shownumbers";
-                break;            
+                break;   
+            case "up":
+            case "ups":
+                action.commandText = "up";
+                break;   
+             case "down":
+                action.commandText = "down";
+                break;           
             default:
                  action.type = "number";
                  action.number = speechInput;

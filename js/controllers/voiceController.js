@@ -61,25 +61,29 @@ angular.module('controllers.voiceController', []).
                   // Execute the Action    
                   if(action.type=="number"){
                      webviewService.triggerLinkClick(action.number);
+                     var promise = $http.get(url).then(function (response) {
+                                      webviewService.showNumbers(); 
+                              });
                   }
                     
-                    switch(action.commandText)
+                  switch(action.commandText)
                     {
-                        case "SHOWNUMBERS":
+                        case "shownumbers":
                           webviewService.showNumbers();
                           break;
-                        case "SCROLLDOWN":
+                        case "down":
+                            webviewService.scrollDown();
                          //
                           break;
-                        case "GO":
+                        case "up":
+                            webviewService.scrollUp();
+                         //
+                          break;
+                        case "go":
                             
                              webviewService.navigateTo($scope.url);
                              var promise = $http.get($scope.url).then(function (response) {
-                                 
-                                 webviewService.showNumbers(); 
-                                    //$scope.pageLinks = htmlService.getAllLinks(response.data);
-                                    //console.log($scope.pageLinks[115]);
-
+                                      webviewService.showNumbers(); 
                               });
                              break;                                         
                         default:
