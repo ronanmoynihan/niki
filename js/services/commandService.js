@@ -41,9 +41,14 @@ angular.module('services.commandService', []).
                 action.commandText = "down";
                 break;           
             default:
+                if(isNaN(speechInput)){
+                    action.type = "unknown";
+                }
+                else{
                  action.type = "number";
                  action.number = speechInput;
-                         //
+                }
+                         
         }
         
         return action;

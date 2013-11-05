@@ -12,15 +12,15 @@ angular.module('controllers.voiceController', []).
             webviewService.navigateTo($scope.url);
             var promise = $http.get($scope.url).then(function (response) {
                                  
-                     webviewService.showNumbers(); 
+                     //webviewService.showNumbers(); 
                         //$scope.pageLinks = htmlService.getAllLinks(response.data);
                         //console.log($scope.pageLinks[115]);
 
                   });
            
             var recognition = new webkitSpeechRecognition();
-            recognition.continuous = true;
-            recognition.interimResults = true;
+            recognition.continuous = false;
+            recognition.interimResults = false;
             recognition.start();
                                
             // on Start
@@ -66,7 +66,7 @@ angular.module('controllers.voiceController', []).
                   if(action.type=="number"){
                      webviewService.triggerLinkClick(action.number);
                      var promise = $http.get(url).then(function (response) {
-                                      webviewService.showNumbers(); 
+                                      //webviewService.showNumbers(); 
                               });
                   }
                     
@@ -87,7 +87,7 @@ angular.module('controllers.voiceController', []).
                             
                              webviewService.navigateTo($scope.url);
                              var promise = $http.get($scope.url).then(function (response) {
-                                      webviewService.showNumbers(); 
+                                     // webviewService.showNumbers(); 
                               });
                              break;                                         
                         default:

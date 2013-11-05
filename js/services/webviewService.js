@@ -32,8 +32,12 @@ angular.module('services.webviewService', []).
                        
              for (var i=0;i<500;i++)
                         { 
-                            var code = "try{document.links[" + i + "].innerHTML+='<span style=color:#FF3A89;font-size:small;background-color:#C8FF00>" + i + "</span>' }catch(err){}";
+                           
+                            //var code = "try{document.links[" + i + "].innerHTML+='<span style=color:#FF3A89;font-size:small;background-color:#C8FF00>" + i + "</span>' }catch(err){}";
                             
+                             //var code = "try{document.links[" + i + "].innerHTML+='<span style=color:#ffffff;font-size:small;background-color:#5cb85c;padding: .2em .6em .3em;border-radius: .25em;line-height: 1;>" + i + "</span>' }catch(err){}";
+                            
+                             var code = "try{document.links[" + i + "].innerHTML+='<nk class=label-niki>" + i + "</nk>' }catch(err){}";
                              webview.executeScript({code: code });
                                
                             //   webview.executeScript({code: "document.links[" + i + "].className+= ' ' + 'hint--right     hint--always hint--success'"});
@@ -107,13 +111,23 @@ angular.module('services.webviewService', []).
               }
             
               //document.querySelector('#location').value = event.url;
-              
-                // set the scope url here.
+
               console.log(event.url);
               
-                
-              //  webview.executeScript({ code: "document.body.scrollTop += 100" });
-         
+              if(document.querySelector('#showNumbers').checked==true){
+              document.querySelector('webview').insertCSS({file:"css/bootstrap.css"},function(){console.log('css inserted');});
+              for (var i=0;i<500;i++)
+                        { 
+                             var code = "try{document.links[" + i + "].innerHTML+='<nk class=label-niki>" + i + "</nk>' }catch(err){}";
+                             document.querySelector('webview').executeScript({code: code });
+                               
+                          
+                        }
+              }
+            
+            //  document.querySelector('webview').insertCSS({file:"hint.css"},function(){console.log('css inserted');});
+            //  webview.executeScript({code: " document.getElementById('google-search-searchterm').value = 'dd'"});                
+        
         }
           
           var handleLoadStart = function(event) {
@@ -125,7 +139,7 @@ angular.module('services.webviewService', []).
                     return;
                   }
                 
-                 // document.querySelector('#location').value = event.url;
+                  document.querySelector('#location').value = event.url;
                 }
           
          var handleLoadStop =  function(event) {

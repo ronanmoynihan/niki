@@ -9,7 +9,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index:99;
+            z-index:-1;
+            
         }  
         
          #speechInput {
@@ -18,32 +19,34 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index:99;
+            z-index:-1;
         }  
     </style>
   </head>    
   <body>
         <div ng-controller="voiceController">
             <div id="controls">
-              <form id="location-form">
-                <div id="center-column">
+              <form>
+                <div style="width:500px;">
                   <input id="location" type="text" ng-model="url" value="{{url}}">
                 </div>
               </form>   
+                <div>
+                    <form ng-submit="submit()" ng-controller="textController">
+                        <input id="textInput" type="text" ng-model="textInput"/>
+                    </form>
+                </div>
+                 <div>
+                      <span id="textInput">Input: {{speechInput}}</span>
+                      <input id="showNumbers" type="checkbox">
+                </div>
             </div>
               
             <webview style="width:640px; height:480px"></webview>
-              <div id="speechInput" >
-              <span id="textInput">Input: {{speechInput}}</span>
-        </div>
+             
         </div>
       
-        <div id="overlayDiv">
-            <form ng-submit="submit()" ng-controller="textController">
-              
-                <input id="textInput" type="text" ng-model="textInput"/>
-            </form>
-        </div>
+       
       
       
         <script src="lib/angular/angular.js"></script>
