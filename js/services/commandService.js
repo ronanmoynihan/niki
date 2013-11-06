@@ -30,14 +30,13 @@ angular.module('services.commandService', []).
                 action.type = "number";
                 action.number = speechInput;
                 break;
-            case "sn":
+            case "show numbers":
                 action.commandText = "shownumbers";
                 break;   
-            case "up":
-            case "ups":
+            case "page up":
                 action.commandText = "up";
                 break;   
-             case "down":
+             case "page down":
                 action.commandText = "down";
                 break;           
             default:

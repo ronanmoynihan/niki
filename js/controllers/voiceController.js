@@ -6,6 +6,10 @@ angular.module('controllers.voiceController', []).
  controller('voiceController', ['$scope','$http','speechService','htmlService','commandService','webviewService',
             function($scope,$http, speechService, htmlService,commandService, webviewService) {
                 
+              $scope.test = function(){
+                 webviewService.scrollDown();
+              },
+              
               $scope.go = function(){
                 
                 console.log('go');

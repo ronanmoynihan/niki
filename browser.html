@@ -30,25 +30,31 @@
               <div class="navbar navbar-inverse navbar-fixed-top">    
               <div class="navbar-inner" style="height:60px;">
                     <div class="container">
-                      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                      </button>
+                      
                       <a class="brand" href="#">Niki</a>
                       <div class="nav-collapse collapse">
                        
                         <form class="navbar-form" ng-submit="go()">
-                          <input id="location" style="width:300px;" class="span2" type="text" ng-model="url" value="{{url}}">
-                         
-                          <span id="textInput" style="width:300px" class="label label-primary">{{speechInput}}</span>
-                            <input id="showNumbers" type="checkbox" checked="true">
+                             <div class="row-fluid">
+                                <div class="span4">
+                                    <input id="location" style="width:100%" class="span4" type="text" ng-model="url" value="{{url}}">
+                                </div>
+                                <div class="span4">
+                                     <img src="css/images/microphone.gif" />
+                                     <span id="textInput" style="min-width:300px;color:#427fed;font-weight:bold;">{{speechInput}}</span>
+                                </div>
+                                <div class="span3 pull-right">
+
+                                    <span>link numbers:</span>
+                                    <span id="showNumbers" class="label label-primary">on</span>
+                                  
+                                </div>
+                            </div>
                         </form>
                       </div><!--/.nav-collapse -->
                     </div>
               </div> 
-                <br />
-                <br />
+               
              </div> // end bootstrap
                 
             <!-- This is keeping the webview loading underneath the controls --> 

@@ -54,6 +54,8 @@ angular.module('services.webviewService', []).
       },
       
       scrollDown: function(){  
+        webview.executeScript({ code: "var dfd = 'test test';" });
+        webview.executeScript({ code: "console.log(dfd);" });
         webview.executeScript({ code: "document.body.scrollTop += 700" });   
       },
       
@@ -114,7 +116,7 @@ angular.module('services.webviewService', []).
 
               console.log(event.url);
               
-              if(document.querySelector('#showNumbers').checked==true){
+              if(document.querySelector('#showNumbers').innerHTML=="on"){
               document.querySelector('webview').insertCSS({file:"css/inject.css"},function(){console.log('css inserted');});
               for (var i=0;i<500;i++)
                         { 
