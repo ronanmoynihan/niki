@@ -6,18 +6,25 @@ angular.module('controllers.voiceController', []).
  controller('voiceController', ['$scope','$http','speechService','htmlService','commandService','webviewService',
             function($scope,$http, speechService, htmlService,commandService, webviewService) {
                 
-            var url = $scope.url;
-            webviewService.initializeWebview();
+              $scope.go = function(){
                 
-            webviewService.navigateTo($scope.url);
-            var promise = $http.get($scope.url).then(function (response) {
-                                 
-                     //webviewService.showNumbers(); 
-                        //$scope.pageLinks = htmlService.getAllLinks(response.data);
-                        //console.log($scope.pageLinks[115]);
+                console.log('go');
+                var url = $scope.url;
+ 
+                webviewService.navigateTo($scope.url);
+                var promise = $http.get($scope.url).then(function (response) {
+                                     
+                         //webviewService.showNumbers(); 
+                            //$scope.pageLinks = htmlService.getAllLinks(response.data);
+                            //console.log($scope.pageLinks[115]);
+    
+                      });
+                }
+              
+            $scope.speechInput = "Speech input will be displayed here";
+              
+            webviewService.initializeWebview();
 
-                  });
-           
             var recognition = new webkitSpeechRecognition();
             recognition.continuous = false;
             recognition.interimResults = false;
@@ -104,6 +111,7 @@ angular.module('controllers.voiceController', []).
                 }
               }
             };// end on result
+                
                 
   }]);
 
