@@ -6,10 +6,7 @@ function showNumbers(){
         return;
     }
     
-    //if(document.links[0].innerHTML.indexOf('<nk') == -1){
-        hideNumbers();
-    //}
-    
+    hideNumbers();
 
           for (var i=0;i<document.links.length;i++){ 
                  try{                                
@@ -21,9 +18,7 @@ function showNumbers(){
                 catch(ex){
                      console.log("Error adding number to link: " + ex.message);
                  }
-        }
-     
-              
+        }          
 }
 
 

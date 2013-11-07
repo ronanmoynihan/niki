@@ -30,11 +30,14 @@ angular.module('controllers.voiceController', []).
                 
                 console.log('go function');
                 var url = $scope.url;
+                if(url.indexOf('http://')==-1){
+                    url = "http://" + url;
+                }
  
-                webviewService.navigateTo($scope.url);
-                var promise = $http.get($scope.url).then(function (response) {
-                            //$scope.pageLinks = htmlService.getAllLinks(response.data);
-    
+                webviewService.navigateTo(url);
+                var promise = $http.get(url).then(function (response) {
+                            $scope.pageLinks = htmlService.getAllLinks(response.data);
+                            console.log($scope.pageLinks);
                       });
                 };
               

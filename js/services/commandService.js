@@ -42,6 +42,8 @@ angular.module('services.commandService', []).
             default:
                 if(isNaN(speechInput)){
                     action.type = "unknown";
+                    
+                    // Do a fuzzy lookup on the pageLinks to match against a url inner text.
                 }
                 else{
                  action.type = "number";
