@@ -34,23 +34,26 @@
                       <a class="brand" href="#">Niki</a>
                       <div class="nav-collapse collapse">
                        
-                        <form class="navbar-form" ng-submit="go()">
+                        
                              <div class="row-fluid">
                                 <div class="span4">
-                                    <input id="location" style="width:100%" class="span4" type="text" ng-model="url" value="{{url}}">
+                                    <form class="navbar-form" ng-submit="go()">
+                                        <input id="location" style="width:100%" class="span4" type="text" ng-model="url" value="{{url}}">
+                                    </form>
                                 </div>
                                 <div class="span4">
                                      <img src="css/images/microphone.gif" />
-                                     <span id="textInput" style="min-width:300px;color:#427fed;font-weight:bold;">{{speechInput}}</span>
+                                     <span id="textInput" style="min-width:300px;color:#6B6E73;font-weight:bold;">{{speechInput}}</span>
                                 </div>
                                 <div class="span3 pull-right">
 
                                     <span>link numbers:</span>
-                                    <span id="showNumbers" class="label label-primary">on</span>
-                                  
+                                    <span id="showNumbers" class="label label-primar">on</span>
+                                    <button ng-click="show()">show</button>
+                                    <button ng-click="hide()">hide</button>
                                 </div>
                             </div>
-                        </form>
+                       
                       </div><!--/.nav-collapse -->
                     </div>
               </div> 

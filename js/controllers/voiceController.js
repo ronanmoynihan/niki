@@ -6,13 +6,19 @@ angular.module('controllers.voiceController', []).
  controller('voiceController', ['$scope','$http','speechService','htmlService','commandService','webviewService',
             function($scope,$http, speechService, htmlService,commandService, webviewService) {
                 
-              $scope.test = function(){
-                 webviewService.scrollDown();
-              },
+              $scope.show = function(){
+                console.log('show function');
+                 webviewService.showNumbers();
+              };
+                
+             $scope.hide = function(){
+                console.log('hide function');
+                 webviewService.hideNumbers();
+              };
               
               $scope.go = function(){
                 
-                console.log('go');
+                console.log('go function');
                 var url = $scope.url;
  
                 webviewService.navigateTo($scope.url);
@@ -23,8 +29,11 @@ angular.module('controllers.voiceController', []).
                             //console.log($scope.pageLinks[115]);
     
                       });
-                }
+                };
               
+            $scope.init = function(){
+                
+                console.log('init function');
             $scope.speechInput = "Speech input will be displayed here";
               
             webviewService.initializeWebview();
@@ -115,7 +124,8 @@ angular.module('controllers.voiceController', []).
                 }
               }
             };// end on result
+            } ;
                 
-                
+             $scope.init();
   }]);
 

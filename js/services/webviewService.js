@@ -25,26 +25,15 @@ angular.module('services.webviewService', []).
             }
            
         },
+      
+        hideNumbers: function(){ 
+            
+             webview.executeScript({code: "hideNumbers();"});
+        },
     
         showNumbers: function() {
             
-             //var webview = document.querySelector('webview');
-                       
-             for (var i=0;i<500;i++)
-                        { 
-                           
-                            //var code = "try{document.links[" + i + "].innerHTML+='<span style=color:#FF3A89;font-size:small;background-color:#C8FF00>" + i + "</span>' }catch(err){}";
-                            
-                             //var code = "try{document.links[" + i + "].innerHTML+='<span style=color:#ffffff;font-size:small;background-color:#5cb85c;padding: .2em .6em .3em;border-radius: .25em;line-height: 1;>" + i + "</span>' }catch(err){}";
-                            
-                             var code = "try{document.links[" + i + "].innerHTML+='<span style=color:red><nk class=label-niki>" + i + "</nk></span>' }catch(err){}";
-                             webview.executeScript({code: code });
-                               
-                            //   webview.executeScript({code: "document.links[" + i + "].className+= ' ' + 'hint--right     hint--always hint--success'"});
-                        }
-            
-            //  document.querySelector('webview').insertCSS({file:"hint.css"},function(){console.log('css inserted');});
-            //  webview.executeScript({code: " document.getElementById('google-search-searchterm').value = 'dd'"});                
+             webview.executeScript({code: "showNumbers();"});              
         },
       
       
@@ -120,14 +109,12 @@ angular.module('services.webviewService', []).
               document.querySelector('webview').insertCSS({file:"css/inject.css"},function(){console.log('css inserted');});
               for (var i=0;i<500;i++)
                         { 
-                             var code = "try{document.links[" + i + "].innerHTML+='<span style=color:red><nk style=color:#FF3A89;padding-left:.3em;padding-right:.3em;font-weight:bold; class=label-niki>" + i + "</nk></span>' }catch(err){}";
-                             document.querySelector('webview').executeScript({code: code });
-                               
-                          
+
                         }
               }
             
-            //  document.querySelector('webview').insertCSS({file:"hint.css"},function(){console.log('css inserted');});
+              document.querySelector('webview').executeScript({file: "js/inject.js"});
+              //document.querySelector('webview').executeScript({code: "showNumbers();"});
             //  webview.executeScript({code: " document.getElementById('google-search-searchterm').value = 'dd'"});                
         
         }

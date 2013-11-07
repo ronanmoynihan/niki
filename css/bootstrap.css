@@ -5664,7 +5664,8 @@ a.badge:focus {
 }
 
 .label-primary {
-background-color: #2CBDF9;
+/*background-color: #2CBDF9;*/
+    background-color: #EC2655;
 }
 
 .label-important,
