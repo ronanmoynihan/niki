@@ -15,6 +15,9 @@ function showNumbers(){
                      
                      // TODO: Add logic to fix the main hero links on Engadget.
                      // This code is not working on them.
+                     
+                     // TODO: Figure out why some links do not get the old tag removed
+                     // and end up with loads of tags every second.
                      document.links[i].innerHTML+=startTag + i + endTag;
                 }
                 catch(ex){
