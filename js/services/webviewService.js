@@ -33,7 +33,12 @@ angular.module('services.webviewService', []).
     
         showNumbers: function() {
             
-             webview.executeScript({code: "showNumbers();"});              
+            try{
+             webview.executeScript({code: "showNumbers();"});    
+            }
+            catch(ex){
+             // swallow ex   
+            }
         },
       
       
