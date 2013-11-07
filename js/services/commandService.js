@@ -44,6 +44,7 @@ angular.module('services.commandService', []).
                     action.type = "unknown";
                     
                     // Do a fuzzy lookup on the pageLinks to match against a url inner text.
+                    // Get the URL for the matched link and set the action type url to this.
                 }
                 else{
                  action.type = "number";
@@ -104,10 +105,7 @@ angular.module('services.commandService', []).
             return "done";
                 
     }
-      
-      
-      
-      
+  
       
   }).
   value('version', '0.1');

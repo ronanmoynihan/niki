@@ -13,6 +13,8 @@ function showNumbers(){
                      var startTag = "<nk style=color:#FFF;padding-left:.3em;padding-right:.3em;font-weight:bold;border-radius:.12em; class=label-niki>";
                      var endTag = "</nk>";
                      
+                     // TODO: Add logic to fix the main hero links on Engadget.
+                     // This code is not working on them.
                      document.links[i].innerHTML+=startTag + i + endTag;
                 }
                 catch(ex){
