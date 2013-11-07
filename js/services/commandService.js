@@ -21,6 +21,9 @@ angular.module('services.commandService', []).
             }    
         
         switch(speechInput){
+                
+            // case [begins with google]
+                
             case "goal":
             case "go":
                 action.type = "command";
