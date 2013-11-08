@@ -8,7 +8,7 @@
 angular.module('services.commandService', []).
   value('commandService', {
     
-    getAction: function(speechInput,pageLinks) {
+    getAction: function(speechInput,pageLinks,url) {
         
         speechInput = speechInput.trim().toLowerCase();
              
@@ -44,10 +44,31 @@ angular.module('services.commandService', []).
                 break;           
             default:
                 if(isNaN(speechInput)){
-                    action.type = "unknown";
+                    action.commandText = "unknown";
                     
-                    // Do a fuzzy lookup on the pageLinks to match against a url inner text.
-                    // Get the URL for the matched link and set the action type url to this.
+                                var options = {
+                                  keys: ['text'],   // keys to search in
+                                  id: 'url'                     // return a list of identifiers only
+                                  //threshold: 0.0
+                                }
+                            var f = new Fuse(pageLinks, options);
+                            var matchedURL = f.search(speechInput); 
+                            
+                            var finalURL;
+                                    for(var m in matchedURL){
+                                            if(matchedURL[m].indexOf('chrome'!=-1)){
+                                                var slash = matchedURL[m].indexOf('/',19);
+                                                var s = matchedURL[m].substring(slash);
+                                                
+                                               finalURL = url.match(/:\/\/(.[^/]+)/)[1] + s;
+                                               break;
+                                            }
+                                            else{
+                                                finalURL = matchedURL[m];
+                                            }
+                                    }
+                    action.url = finalURL;
+                    console.log("closest matched url: " + action.url);
                 }
                 else{
                  action.type = "number";

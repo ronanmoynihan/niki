@@ -10,33 +10,27 @@ angular.module('services.htmlService', []).
     
         getAllLinks: function(html) {
             
-            var doc = document.implementation.createHTMLDocument
-            
-            // Estimate links as # of a's plus 100 ??????
-            // Not sure why this count is different to document.links
-            console.log('counting links');
-            var numberOfLinks = html.match(/<a/g).length;
-            var estimate = numberOfLinks + 100; 
-            console.log('Estimated number of links is: ' + estimate);  
-            //$scope.numberOfLinks = estimate;
-            
-
             html = html.replace(/<img[^>]*>/g,"");
-            var doc = document.implementation.createHTMLDocument();
-            html = html.split("<body")[1].split(">").slice(1).join(">").split("</body>")[0];
-            var doc1 = (new DOMParser).parseFromString(html,'text/html');
-            
-            doc.body.innerHTML = html;
-            console.log(doc.links);
             html = $.parseHTML( html );
             
-            console.log( $('a', html));
-         
+            var links = [];
+            var atags = $('a', html);
             
-            //$("content").html(html);
-
-           return $(html).find( "a" );
+            for(var i in atags){
+                 if(atags[i]!=null){
+                    var plink = {
+                        text: atags[i].innerText,
+                        url: atags[i].href
+                    }    
+                    // console.log(atags[i].href);
+                    links.push(plink);
+                }
+            }
+         
+            return links;
     }
+      
+    
   }).
   value('version', '0.1');
 

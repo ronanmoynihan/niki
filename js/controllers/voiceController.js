@@ -38,7 +38,25 @@ angular.module('controllers.voiceController', []).
                 var promise = $http.get(url).then(function (response) {
                             $scope.pageLinks = htmlService.getAllLinks(response.data);
                             console.log($scope.pageLinks);
-                      });
+                    
+//                              var options = {
+//                                  keys: ['text'],   // keys to search in
+//                                  id: 'url'                     // return a list of identifiers only
+//                                  //threshold: 0.0
+//                                }
+//                            var f = new Fuse($scope.pageLinks, options);
+//                            var matchedURL = f.search("may seek"); 
+//                            
+//                                    for(var m in matchedURL){
+//                                            if(matchedURL[m].indexOf('chrome'!=-1)){
+//                                                var slash = matchedURL[m].indexOf('/',19);
+//                                                var s = matchedURL[m].substring(slash);
+//                                                console.log("match: " + matchedURL[m]);
+//                                                console.log("s: " + url.match(/:\/\/(.[^/]+)/)[1] + s);
+//                                               break;
+//                                            }
+//                                    }
+                              });
                 };
               
             $scope.init = function(){
@@ -90,7 +108,7 @@ angular.module('controllers.voiceController', []).
                         
                       // call a service which will determine what action to take.
                       var speechInput = event.results[i][0].transcript;     
-                      var action = commandService.getAction(speechInput,$scope.pageLinks);
+                      var action = commandService.getAction(speechInput,$scope.pageLinks,$scope.url);
                         
                       // Execute the Action    
                       if(action.type=="number"){
@@ -102,6 +120,9 @@ angular.module('controllers.voiceController', []).
                         
                       switch(action.commandText)
                         {
+                            case "unknown":
+                                webviewService.navigateTo("http://"+action.url);
+                                break;
                             case "shownumbers":
                               webviewService.showNumbers();
                               break;
