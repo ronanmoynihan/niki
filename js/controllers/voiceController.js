@@ -113,7 +113,7 @@ angular.module('controllers.voiceController', []).
                       // Execute the Action    
                       if(action.type=="number"){
                          webviewService.triggerLinkClick(action.number);
-                         var promise = $http.get(url).then(function (response) {
+                         var promise = $http.get($scope.url).then(function (response) {
                                           //webviewService.showNumbers(); 
                                   });
                       }
