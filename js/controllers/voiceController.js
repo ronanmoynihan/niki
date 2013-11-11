@@ -27,7 +27,9 @@ angular.module('controllers.voiceController', []).
               };
               
               $scope.go = function(){
-                
+
+                $scope.showStartScreen = false;
+
                 console.log('go function');
                 var url = $scope.url;
                 if(url.indexOf('http://')==-1){
@@ -39,28 +41,14 @@ angular.module('controllers.voiceController', []).
                             $scope.pageLinks = htmlService.getAllLinks(response.data);
                             console.log($scope.pageLinks);
                     
-//                              var options = {
-//                                  keys: ['text'],   // keys to search in
-//                                  id: 'url'                     // return a list of identifiers only
-//                                  //threshold: 0.0
-//                                }
-//                            var f = new Fuse($scope.pageLinks, options);
-//                            var matchedURL = f.search("may seek"); 
-//                            
-//                                    for(var m in matchedURL){
-//                                            if(matchedURL[m].indexOf('chrome'!=-1)){
-//                                                var slash = matchedURL[m].indexOf('/',19);
-//                                                var s = matchedURL[m].substring(slash);
-//                                                console.log("match: " + matchedURL[m]);
-//                                                console.log("s: " + url.match(/:\/\/(.[^/]+)/)[1] + s);
-//                                               break;
-//                                            }
-//                                    }
                               });
                 };
               
             $scope.init = function(){
                 
+                $scope.showStartScreen = true;
+                
+                $scope.microphoneurl = "css/images/microphone.gif";
                 console.log('init function');
                 $scope.speechInput = "Speech input will be displayed here";
                   
@@ -73,12 +61,20 @@ angular.module('controllers.voiceController', []).
                                    
                 // on Start
                 recognition.onstart = function() {
+                      
+                    $scope.$apply(function () {
+                        $scope.microphoneurl = "css/images/microphone-on.gif";
+                      });
                     console.log('starting webkitSpeechRecognition: ' +  new Date().toString('yyyy-MM-dd') );
+                     
                 }; // end start
           
                 
                // on Error
                recognition.onerror = function(event) {
+                    $scope.$apply(function () {
+                        $scope.microphoneurl = "css/images/microphone.gif";
+                      });
                     if (event.error == 'no-speech') { console.log('error - no speech');}
                     if (event.error == 'audio-capture') { console.log('error - audio-capture');}
                     if (event.error == 'not-allowed'){ console.log('error - audio-capture');}  
@@ -87,6 +83,11 @@ angular.module('controllers.voiceController', []).
                 
                 // on end
                 recognition.onend = function() {
+                    
+                     $scope.$apply(function () {
+                        $scope.microphoneurl = "css/images/microphone.gif";
+                      });
+                    
                     var date = new Date(event.timeStamp);
                     console.log('end webkitSpeechRecognition: ' + date.toString('yyyy-MM-dd') );  
             

@@ -12,6 +12,9 @@
       "scripts": ["main.js"]
     }
   },
+     "optional_permissions": [
+    "serial"
+  ],
   "permissions": [
     "http://*/",
     "https://*/",
