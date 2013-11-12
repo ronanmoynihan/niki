@@ -41,6 +41,10 @@ angular.module('services.webviewService', []).
         webview.executeScript({ code: "smoothScroll('up');" });   
       },
       
+       goBack: function(){  
+        webview.back();
+      },
+      
      navigateTo: function (url) {
         document.querySelector('webview').src = url;  
      },

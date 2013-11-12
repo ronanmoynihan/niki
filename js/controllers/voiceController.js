@@ -145,7 +145,9 @@ angular.module('controllers.voiceController', []).
                               break;
                             case "down":
                                 webviewService.scrollDown();
-                             //
+                              break;
+                             case "back":
+                                webviewService.goBack();;
                               break;
                             case "up":
                                 webviewService.scrollUp();

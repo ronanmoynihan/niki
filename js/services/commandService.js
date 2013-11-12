@@ -47,7 +47,10 @@ angular.module('services.commandService', []).
                 break;   
              case "scroll down":
                 action.commandText = "down";
-                break;           
+                break;    
+             case "back":
+                action.commandText = "back";
+                break;   
             default:
                 if(isNaN(speechInput)){
                     action.commandText = "unknown";
