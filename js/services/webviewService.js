@@ -86,7 +86,17 @@ angular.module('services.webviewService', []).
 
             document.querySelector('webview').insertCSS({file:"css/inject.css"},function(){console.log('css inserted');});
             document.querySelector('webview').executeScript({file: "js/inject.js"});
-            //  webview.executeScript({code: " document.getElementById('google-search-searchterm').value = 'dd'"});                
+            //  webview.executeScript({code: " document.getElementById('google-search-searchterm').value = 'dd'"}); 
+                
+             var controls = document.querySelector('#controls');
+          var controlsHeight = controls.offsetHeight;
+          var windowWidth = document.documentElement.clientWidth;
+          var windowHeight = document.documentElement.clientHeight;
+          var webviewWidth = windowWidth;
+          var webviewHeight = windowHeight - controlsHeight;
+        
+          webview.style.width = webviewWidth + 'px';
+          webview.style.height = webviewHeight + 'px';  
         
         }
           
