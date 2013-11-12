@@ -33,9 +33,7 @@ angular.module('services.webviewService', []).
       },
       
       scrollDown: function(){  
-        webview.executeScript({ code: "var dfd = 'test test';" });
-        webview.executeScript({ code: "console.log(dfd);" });
-        webview.executeScript({ code: "document.body.scrollTop += 700" });   
+        webview.executeScript({ code: "smoothScroll('up');" });   
       },
       
       
@@ -86,6 +84,7 @@ angular.module('services.webviewService', []).
 
             document.querySelector('webview').insertCSS({file:"css/inject.css"},function(){console.log('css inserted');});
             document.querySelector('webview').executeScript({file: "js/inject.js"});
+            document.querySelector('webview').executeScript({file: "js/scroll.js"});
             //  webview.executeScript({code: " document.getElementById('google-search-searchterm').value = 'dd'"}); 
                 
              var controls = document.querySelector('#controls');

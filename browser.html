@@ -58,12 +58,14 @@
                                 </div>
                                 <div class="span4 toolbar" style="background-color:#fff;border-color:gray;border-style:solid;border-width:1px;">
                                      <span id="textInput" style="min-width:300px;color:#6B6E73;font-weight:bold;padding-left: 10px;">{{speechInput}}</span>
-                                     <img class="pull-right" ng-src="{{microphoneurl}}"/>
+                                     <!--img class="pull-right" ng-src="{{microphoneurl}}"/-->
+                                     <img class="pull-right" ng-src="css/images/microphone.gif"/>
                                 </div>
                                 <div class="span3 pull-right toolbar">
 
                                     <span>link numbers:</span>
                                     <span id="showNumbers" class="label label-primar">on</span><span>off</span>
+                                    <button ng-click="scroll()">scroll</button>
 
                                 </div>
                             </div>

@@ -6,6 +6,11 @@ angular.module('controllers.voiceController', []).
  controller('voiceController', ['$scope','$http','$timeout','speechService','htmlService','commandService','webviewService',
             function($scope,$http,$timeout, speechService, htmlService,commandService, webviewService) {
                 
+                
+               $scope.scroll = function(){
+                    webviewService.scrollDown();
+              };
+                
               var showNumbers = function() {
                                 webviewService.showNumbers();
                      
@@ -50,7 +55,7 @@ angular.module('controllers.voiceController', []).
                 
                 $scope.microphoneurl = "css/images/microphone.gif";
                 console.log('init function');
-                $scope.speechInput = "Speech input will be displayed here";
+                $scope.speechInput = "Listening...";
                   
                 webviewService.initializeWebview();
     
@@ -63,7 +68,7 @@ angular.module('controllers.voiceController', []).
                 recognition.onstart = function() {
                       
                     $scope.$apply(function () {
-                        $scope.microphoneurl = "css/images/microphone-on.gif";
+                        $scope.microphoneurl = "css/images/microphone.png";
                       });
                     console.log('starting webkitSpeechRecognition: ' +  new Date().toString('yyyy-MM-dd') );
                      
