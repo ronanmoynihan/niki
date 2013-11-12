@@ -52,6 +52,7 @@ angular.module('controllers.voiceController', []).
             $scope.init = function(){
                 
                 $scope.showStartScreen = true;
+                 $scope.micStatus = "off";
                 
                 $scope.microphoneurl = "css/images/microphone.gif";
                 console.log('init function');
@@ -68,7 +69,7 @@ angular.module('controllers.voiceController', []).
                 recognition.onstart = function() {
                       
                     $scope.$apply(function () {
-                        //$scope.speechInput = "Listening...";
+                         $scope.micStatus = "on";
                       });
                     console.log('starting webkitSpeechRecognition: ' +  new Date().toString('yyyy-MM-dd') );
                      
@@ -77,25 +78,34 @@ angular.module('controllers.voiceController', []).
                 
                // on Error
                recognition.onerror = function(event) {
-                    $scope.$apply(function () {
-                       $scope.speechInput = "";
-                      });
+                   
+                   
                     if (event.error == 'no-speech') {
+                        
                         $scope.$apply(function () {
-                            $scope.speechInput = "Listening...";
-                      });
+                                    $scope.micStatus = "off";
+                                    $scope.speechInput = "Listening";
+                              });
+                              
                         console.log('error - no speech');}
-                    if (event.error == 'audio-capture') { console.log('error - audio-capture');}
-                    if (event.error == 'not-allowed'){ console.log('error - audio-capture');}  
+                    if (event.error == 'audio-capture') { 
+                         $scope.$apply(function () {
+                                    $scope.micStatus = "off";
+                                    $scope.speechInput = "Check microphone";
+                              });
+                        console.log('error - audio-capture');}
+                    if (event.error == 'not-allowed'){ 
+                         $scope.$apply(function () {
+                                    $scope.micStatus = "off";
+                                    $scope.speechInput = "Check microphone";
+                              });
+                        console.log('error - audio-capture');}  
                 }; // end error
           
                 
                 // on end
                 recognition.onend = function() {
                     
-                     $scope.$apply(function () {
-                       // $scope.speechInput = "";
-                      });
                     
                     var date = new Date(event.timeStamp);
                     console.log('end webkitSpeechRecognition: ' + date.toString('yyyy-MM-dd') );  

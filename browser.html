@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp" ng-csp>
   <head>
@@ -19,36 +20,42 @@
           padding: 10px 0px 10px;
         }
         
-        .numberCircle {
+        .circle{
                 -webkit-border-radius: 999px;
                 -moz-border-radius: 999px;
                 border-radius: 999px;
-                behavior: url(PIE.htc);           
+                behavior: url(PIE.htc);  
+                text-align: center;
+        }
+        
+        .numberCircle {
+                 
                 width: 36px;
                 height: 36px;
                 padding: 8px;                
                 background: darkgray;
                 color: #fff;
-                text-align: center;
-                
                 font: 32px Arial, sans-serif
             }
         
-         .smallCircle {
-                -webkit-border-radius: 999px;
-                -moz-border-radius: 999px;
-                border-radius: 999px;
-                behavior: url(PIE.htc);           
+         .on {
                 width: 8px;
                 height: 8px;
                 padding: 1px;                
                 background: #09F80D;
                 color: #fff;
-                text-align: center;
                 margin-top:5px;
                 margin-left:5px;
-                
-                font: 32px Arial, sans-serif
+            }
+        
+        .off {
+                width: 8px;
+                height: 8px;
+                padding: 1px;                
+                background: darkgray;
+                color: #fff;
+                margin-top:5px;
+                margin-left:5px;
             }
         
         .url{
@@ -94,17 +101,26 @@
                                     </form>
                                 </div>
                                 <div class="span3 toolbar" style="background-color:#fff;border-color:gray;border-style:solid;border-width:1px;">
-                                     <div class="smallCircle pull-left"></div>
+                                     <div class="circle pull-left" ng-class="micStatus"></div>
                                     <span id="textInput" style="min-width:300px;color:#6B6E73;font-weight:bold;padding-left: 10px;">{{speechInput}}</span>
                                      <!--img class="pull-right" ng-src="{{microphoneurl}}"/-->
                                      <img class="pull-right" ng-src="css/images/microphone.gif"/>
                                 </div>
-                                <div class="span3 pull-right toolbar">
-
-                                    <span>link numbers:</span>
-                                    <span id="showNumbers" class="label label-primar">on</span>
-                                    <!--button ng-click="scroll()">scroll</button-->
-
+                                <div class="span3 toolbar" style="margin-top:-10px;">
+                                    <div class="row-fluid">
+                                        <div>
+                                            <span>link numbers:</span>
+                                            <span id="showNumbers" class="label label-primar">on</span>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div>
+                                            <!--button ng-click="scroll()">scroll</button-->
+                                            <span>use niki in commands:</span>
+                                            <span id="showNumbers" class="label label-primar">on</span>
+                                        </div>
+                                    </div>
+                                        
                                 </div>
                             </div>
                        
@@ -128,7 +144,7 @@
                     <div>
                             <div class="row-fluid" style="height:150px">
                                     <div class="span1">
-                                        <div class="numberCircle">1</div>
+                                        <div class="circle numberCircle">1</div>
                                     </div>
                                      <div class="span4" style="vertical-align: bottom;font-weight:bold;">
                                         Go to [website]
@@ -136,7 +152,7 @@
                              </div>
                              <div class="row-fluid" style="height:150px">
                                     <div class="span1">
-                                        <div class="numberCircle">2</div>
+                                        <div class="circle numberCircle">2</div>
                                     </div>
                                      <div class="span4"  style="vertical-align: bottom;font-weight:bold;">
                                         Say a number to click on that link
@@ -144,7 +160,7 @@
                              </div>
                              <div class="row-fluid" style="height:150px">
                                     <div class="span1">
-                                        <div class="numberCircle">3</div>
+                                        <div class="circle numberCircle">3</div>
                                     </div>
                                      <div class="span4">
                                         
