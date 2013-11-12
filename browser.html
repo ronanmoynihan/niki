@@ -34,6 +34,39 @@
                 font: 32px Arial, sans-serif
             }
         
+         .smallCircle {
+                -webkit-border-radius: 999px;
+                -moz-border-radius: 999px;
+                border-radius: 999px;
+                behavior: url(PIE.htc);           
+                width: 8px;
+                height: 8px;
+                padding: 1px;                
+                background: #09F80D;
+                color: #fff;
+                text-align: center;
+                margin-top:5px;
+                margin-left:5px;
+                
+                font: 32px Arial, sans-serif
+            }
+        
+        .url{
+                background-color: #fff;
+                border: 1px solid rgb(185,185,185);
+                border-top-color: rgb(160,160,160);
+                box-shadow: inset 0px 1px 2px rgba(0,0,0,0.1);
+                cursor: text;
+                font: 18px arial,sans-serif;
+                height: 44px;
+                position: relative;
+                -webkit-border-radius: 1px;
+                color: #6B6E73;
+                font-size: 14px;
+                padding-left: 5px;
+                
+            }
+        
         #startScreenContent{
             margin:50px;
             
@@ -46,26 +79,31 @@
               <div class="navbar-inner" style="height:70px;">
                     <div class="container">
                       
-                      <a class="brand" href="#">Niki</a>
+                     
                       <div class="nav-collapse collapse">
                        
                         
                              <div class="row-fluid">
+                                   <div class="span2" style="margin-top: 10px;">
+                                         <span style="color:#2CBDF9;font-size: 30px;margin-top: 10px;">Niki</span>
+                                         <span>[beta]</span>
+                                       </div>
                                 <div class="span4">
-                                    <form class="navbar-form" ng-submit="go()">
-                                        <input id="location" style="width:100%" class="span4" type="text" ng-model="url" value="{{url}}">
+                                    <form  ng-submit="go()">
+                                        <input id="location" style="width:100%" class="span4 url" type="text" ng-model="url" value="{{url}}">
                                     </form>
                                 </div>
-                                <div class="span4 toolbar" style="background-color:#fff;border-color:gray;border-style:solid;border-width:1px;">
-                                     <span id="textInput" style="min-width:300px;color:#6B6E73;font-weight:bold;padding-left: 10px;">{{speechInput}}</span>
+                                <div class="span3 toolbar" style="background-color:#fff;border-color:gray;border-style:solid;border-width:1px;">
+                                     <div class="smallCircle pull-left"></div>
+                                    <span id="textInput" style="min-width:300px;color:#6B6E73;font-weight:bold;padding-left: 10px;">{{speechInput}}</span>
                                      <!--img class="pull-right" ng-src="{{microphoneurl}}"/-->
                                      <img class="pull-right" ng-src="css/images/microphone.gif"/>
                                 </div>
                                 <div class="span3 pull-right toolbar">
 
                                     <span>link numbers:</span>
-                                    <span id="showNumbers" class="label label-primar">on</span><span>off</span>
-                                    <button ng-click="scroll()">scroll</button>
+                                    <span id="showNumbers" class="label label-primar">on</span>
+                                    <!--button ng-click="scroll()">scroll</button-->
 
                                 </div>
                             </div>
@@ -130,6 +168,10 @@
                                               <tr>
                                                 <td>go back</td>
                                                 <td>show commands</td>
+                                              </tr>
+                                              <tr>
+                                                <td>refresh</td>
+                                                <td>hide commands</td>
                                               </tr>
                                             </tbody>
                                           </table>

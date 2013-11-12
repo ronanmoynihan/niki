@@ -14,7 +14,7 @@ var smoothScroll = function (direction) {
                         // Calculate how far and how fast to scroll
                         var startLocation = window.pageYOffset;                       
                         var distance = endLocation - startLocation;
-                        var increments = distance/(1000/16);
+                        var increments = distance/(250/16);
                         var stopAnimation;
 
                         // Scroll the page by an increment, and check if it's time to stop

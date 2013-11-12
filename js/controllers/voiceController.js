@@ -68,7 +68,7 @@ angular.module('controllers.voiceController', []).
                 recognition.onstart = function() {
                       
                     $scope.$apply(function () {
-                        $scope.microphoneurl = "css/images/microphone.png";
+                        //$scope.speechInput = "Listening...";
                       });
                     console.log('starting webkitSpeechRecognition: ' +  new Date().toString('yyyy-MM-dd') );
                      
@@ -78,9 +78,13 @@ angular.module('controllers.voiceController', []).
                // on Error
                recognition.onerror = function(event) {
                     $scope.$apply(function () {
-                        $scope.microphoneurl = "css/images/microphone.gif";
+                       $scope.speechInput = "";
                       });
-                    if (event.error == 'no-speech') { console.log('error - no speech');}
+                    if (event.error == 'no-speech') {
+                        $scope.$apply(function () {
+                            $scope.speechInput = "Listening...";
+                      });
+                        console.log('error - no speech');}
                     if (event.error == 'audio-capture') { console.log('error - audio-capture');}
                     if (event.error == 'not-allowed'){ console.log('error - audio-capture');}  
                 }; // end error
@@ -90,7 +94,7 @@ angular.module('controllers.voiceController', []).
                 recognition.onend = function() {
                     
                      $scope.$apply(function () {
-                        $scope.microphoneurl = "css/images/microphone.gif";
+                       // $scope.speechInput = "";
                       });
                     
                     var date = new Date(event.timeStamp);
