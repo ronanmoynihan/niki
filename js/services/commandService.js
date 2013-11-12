@@ -13,6 +13,8 @@ angular.module('services.commandService', []).
         speechInput = speechInput.trim().toLowerCase();
              
         
+        // scroll of,scrubs = scroll up
+        
         var action = {
                 type: "",
                 url: "",
@@ -33,13 +35,17 @@ angular.module('services.commandService', []).
                 action.type = "number";
                 action.number = speechInput;
                 break;
-            case "show numbers":
+            case "numbers on":
                 action.commandText = "shownumbers";
                 break;   
-            case "page up":
+             case "numbers off":
+             case "numbers of":
+                action.commandText = "hidenumbers";
+                break;   
+            case "scroll up":
                 action.commandText = "up";
                 break;   
-             case "page down":
+             case "scroll down":
                 action.commandText = "down";
                 break;           
             default:

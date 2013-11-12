@@ -7,10 +7,6 @@ angular.module('controllers.voiceController', []).
             function($scope,$http,$timeout, speechService, htmlService,commandService, webviewService) {
                 
                 
-               $scope.scroll = function(){
-                    webviewService.scrollDown();
-              };
-                
               var showNumbers = function() {
                                 webviewService.showNumbers();
                      
@@ -25,11 +21,6 @@ angular.module('controllers.voiceController', []).
                  
               };
                 
-             $scope.hide = function(){
-                console.log('hide function');
-                 clearInterval(repeater);
-                 webviewService.hideNumbers();
-              };
               
               $scope.go = function(){
 
@@ -52,7 +43,8 @@ angular.module('controllers.voiceController', []).
             $scope.init = function(){
                 
                 $scope.showStartScreen = true;
-                 $scope.micStatus = "off";
+                $scope.micStatus = "off";
+                $scope.numbersStatus = "on";
                 
                 $scope.microphoneurl = "css/images/microphone.gif";
                 console.log('init function');
@@ -144,7 +136,12 @@ angular.module('controllers.voiceController', []).
                                 webviewService.navigateTo("http://"+action.url);
                                 break;
                             case "shownumbers":
-                              webviewService.showNumbers();
+                               webviewService.showNumbers();
+                               repeater = setInterval(showNumbers,1000);
+                              break;
+                            case "hidenumbers":
+                                clearInterval(repeater);
+                                webviewService.hideNumbers();
                               break;
                             case "down":
                                 webviewService.scrollDown();

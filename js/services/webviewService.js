@@ -33,12 +33,12 @@ angular.module('services.webviewService', []).
       },
       
       scrollDown: function(){  
-        webview.executeScript({ code: "smoothScroll('up');" });   
+        webview.executeScript({ code: "smoothScroll('down');" });   
       },
       
       
       scrollUp: function(){  
-        webview.executeScript({ code: "document.body.scrollTop -= 700" });   
+        webview.executeScript({ code: "smoothScroll('up');" });   
       },
       
      navigateTo: function (url) {
