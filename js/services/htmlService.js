@@ -28,7 +28,18 @@ angular.module('services.htmlService', []).
             }
          
             return links;
-    }
+        },
+      
+      
+       getURL: function(inputURL){
+           
+           var url = inputURL;
+                    if(url.indexOf('http://')==-1){
+                        url = "http://" + url;
+                    }
+           
+           return url;
+       }
       
     
   }).

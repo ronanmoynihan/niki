@@ -10,11 +10,7 @@ angular.module('controllers.voiceController', []).
 
                     $scope.showStartScreen = false;
     
-                    console.log('go function');
-                    var url = $scope.url;
-                    if(url.indexOf('http://')==-1){
-                        url = "http://" + url;
-                    }
+                    var url = htmlService.getURL($scope.url);
      
                     webviewService.navigateTo(url);
                     var promise = $http.get(url).then(function (response) {
@@ -147,8 +143,8 @@ angular.module('controllers.voiceController', []).
                                 webviewService.scrollUp();
                               break;
                             case "goto":
-                                
-                                // Need to clean up the URL for http etc....
+                                 
+                                 action.url = htmlService.getURL(action.url);
                                  webviewService.navigateTo(action.url);
                                  var promise = $http.get(action.url).then(function (response) {
                                          $scope.pageLinks = htmlService.getAllLinks(response.data);

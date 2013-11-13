@@ -29,7 +29,7 @@ angular.module('services.commandService', []).
             }
         
         if(input.text.startsWith('go to')){
-           input.paramater = input.text.substr(5,input.text.length);
+           input.paramater = input.text.substr(5,input.text.length).trim();
            input.text = "go to";
            console.log(input.paramater);
         }
