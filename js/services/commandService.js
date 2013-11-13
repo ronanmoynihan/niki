@@ -48,12 +48,6 @@ angular.module('services.commandService', []).
         
         switch(input.text){
                 
-            // case [begins with google]
-                
-            case "goal":
-            case "go":
-                action.commandText = "go";
-                break;
             case "number":
                 action.commandText = "number";
                 action.number = speechInput;
@@ -100,7 +94,8 @@ angular.module('services.commandService', []).
                                   //threshold: 0.0
                                 }
                             var f = new Fuse(pageLinks, options);
-                            var matchedURL = f.search(speechInput); 
+                            // Fuse only works on strings less than 33.
+                            var matchedURL = f.search(speechInput.substr(0,32)); 
                             
                             var finalURL;
                                     for(var m in matchedURL){
@@ -115,6 +110,10 @@ angular.module('services.commandService', []).
                                                 finalURL = matchedURL[m];
                                             }
                                     }
+                    if(finalURL==null){
+                        finalURL=url;
+                        console.log('Did not find a fuzzy match');
+                    }
                     action.url = finalURL;
                     console.log("closest matched url: " + action.url);
                 }

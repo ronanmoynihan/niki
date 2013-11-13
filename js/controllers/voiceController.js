@@ -124,7 +124,8 @@ angular.module('controllers.voiceController', []).
                                       });
                                 break;
                             case "unknown":
-                                webviewService.navigateTo("http://"+action.url);
+                                action.url = htmlService.getURL(action.url);
+                                webviewService.navigateTo(action.url);
                                 break;
                             case "shownumbers":
                                webviewService.showNumbers();
@@ -151,6 +152,7 @@ angular.module('controllers.voiceController', []).
                                   });
                                 $scope.$apply(function () {
                                     $scope.showStartScreen = false;
+                                    $scope.url = action.url;
                                 });
                                  break;   
                             case "search":
@@ -160,14 +162,10 @@ angular.module('controllers.voiceController', []).
                                   });
                                 $scope.$apply(function () {
                                     $scope.showStartScreen = false;
+                                    $scope.url = action.url;
                                 });
                                 break;
-                            case "go":
-                                 webviewService.navigateTo($scope.url);
-                                 var promise = $http.get($scope.url).then(function (response) {
-                                         $scope.pageLinks = htmlService.getAllLinks(response.data);
-                                  });
-                                 break;                                         
+                                                          
                             default:
                              //
                         }
