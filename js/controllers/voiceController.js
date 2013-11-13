@@ -6,39 +6,23 @@ angular.module('controllers.voiceController', []).
  controller('voiceController', ['$scope','$http','$timeout','speechService','htmlService','commandService','webviewService',
             function($scope,$http,$timeout, speechService, htmlService,commandService, webviewService) {
                 
-                
-              var showNumbers = function() {
-                                webviewService.showNumbers();
-                     
-                                };
-                
-              var repeater = null;
-                
-              $scope.show = function(){
-                console.log('show function');
-                webviewService.showNumbers();
-                repeater = setInterval(showNumbers,1000);
-                 
-              };
-                
-              
-              $scope.go = function(){
+            $scope.go = function(){
 
-                $scope.showStartScreen = false;
-
-                console.log('go function');
-                var url = $scope.url;
-                if(url.indexOf('http://')==-1){
-                    url = "http://" + url;
-                }
- 
-                webviewService.navigateTo(url);
-                var promise = $http.get(url).then(function (response) {
-                            $scope.pageLinks = htmlService.getAllLinks(response.data);
-                            console.log($scope.pageLinks);
-                    
-                              });
-                };
+                    $scope.showStartScreen = false;
+    
+                    console.log('go function');
+                    var url = $scope.url;
+                    if(url.indexOf('http://')==-1){
+                        url = "http://" + url;
+                    }
+     
+                    webviewService.navigateTo(url);
+                    var promise = $http.get(url).then(function (response) {
+                                $scope.pageLinks = htmlService.getAllLinks(response.data);
+                                console.log($scope.pageLinks);
+                        
+                                  });
+                    };
               
             $scope.init = function(){
                 
@@ -51,10 +35,24 @@ angular.module('controllers.voiceController', []).
                 $scope.speechInput = "Listening...";
                   
                 webviewService.initializeWebview();
+                
+                 var showNumbers = function() {
+                                webviewService.showNumbers();
+                     
+                                };
+                
+                  var repeater = null;
+                    
+                  $scope.show = function(){
+                    console.log('show function');
+                    webviewService.showNumbers();
+                    repeater = setInterval(showNumbers,1000);
+                     
+                  };
     
                 var recognition = new webkitSpeechRecognition();
-                recognition.continuous = false;
-                recognition.interimResults = false;
+                recognition.continuous = true;
+                recognition.interimResults = true;
                 recognition.start();
                                    
                 // on Start

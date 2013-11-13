@@ -13,7 +13,9 @@ angular.module('services.commandService', []).
         speechInput = speechInput.trim().toLowerCase();
              
         
-        // scroll of,scrubs = scroll up
+        // scott up,scroll of,scrubs,grpwn up = scroll up
+        
+        // bach = back
         
         var action = {
                 type: "",
