@@ -12,19 +12,24 @@ angular.module('services.commandService', []).
         
         speechInput = speechInput.trim().toLowerCase();
              
+        var input = {
+                text : speechInput,
+                paramater : ""
+        }
         
-        // scott up,scroll of,scrubs,grpwn up = scroll up
-        
-        // bach = back
+        /*Split input and paramaters
+            1. Go to xxxx
+            2. Search xxx
+        */
+            
         
         var action = {
-                type: "",
                 url: "",
                 number: "",
                 commandText: ""
             }    
         
-        switch(speechInput){
+        switch(input.text){
                 
             // case [begins with google]
                 
@@ -41,15 +46,22 @@ angular.module('services.commandService', []).
                 break;   
              case "numbers off":
              case "numbers of":
+             case "number off":
+             case "number of":
                 action.commandText = "hidenumbers";
                 break;   
             case "scroll up":
+            case "scott up":
+            case "scroll of":
+            case "grown up":
                 action.commandText = "up";
                 break;   
              case "scroll down":
                 action.commandText = "down";
                 break;    
              case "back":
+             case "bach":
+             case "black":
                 action.commandText = "back";
                 break;   
             default:
@@ -89,57 +101,9 @@ angular.module('services.commandService', []).
         
         return action;
 
-        // 1. check if the input is a number. if so get the mapped href
-        // return pageLinks[speechInput];
-        
-        // 2. compare input to known commands i.e go, down, up, show numbers;
-        
-        // 3. do a fuzzy string lookup against the text value of all links
-        
-        // 4. if still no match, return no action found for input
-        
-      
-    }, // end getAction
+    } // end getAction
       
       
-    doAction: function(webviewService,url,speechInput){
-      
-                  var action = {
-                        type: "",
-                        url: "",
-                        number: "",
-                        commandText: ""
-                    }
-                
-                // 1 - Number
-                action.type = "number";
-                action.number = speechInput.trim();
-                
-                action.type = "command";
-                action.commandText = "GO";
-        
-                  if(action.type=="number"){
-                     webviewService.triggerLinkClick(action.number);
-                  }
-                    
-                    switch(action.commandText)
-                    {
-                        case "SHOWNUMBERS":
-                          webviewService.showNumbers();
-                          break;
-                        case "SCROLLDOWN":
-                         //
-                          break;
-                                   
-                        default:
-                         //
-                    }
-            
-            console.log("returning from doAction");
-            return "done";
-                
-    }
-  
       
   }).
   value('version', '0.1');
