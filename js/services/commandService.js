@@ -33,6 +33,11 @@ angular.module('services.commandService', []).
            input.text = "go to";
            console.log(input.paramater);
         }
+        if(input.text.startsWith('search')){
+           input.paramater = input.text.substr(6,input.text.length).trim();
+           input.text = "search";
+           console.log(input.paramater);
+        }
             
         
         var action = {
@@ -74,11 +79,16 @@ angular.module('services.commandService', []).
              case "back":
              case "bach":
              case "black":
+             case "pack":
                 action.commandText = "back";
                 break;  
             case "go to":
                 action.commandText = "goto";
                 action.url = input.paramater;
+                break;
+            case "search":
+                action.commandText = "search";
+                action.url = "http://www.google.com/search?q=" + input.paramater;
                 break;
             default:
                 if(isNaN(speechInput)){

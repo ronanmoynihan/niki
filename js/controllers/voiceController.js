@@ -11,6 +11,7 @@ angular.module('controllers.voiceController', []).
                     $scope.showStartScreen = false;
     
                     var url = htmlService.getURL($scope.url);
+                    $scope.url = url;
      
                     webviewService.navigateTo(url);
                     var promise = $http.get(url).then(function (response) {
@@ -142,8 +143,7 @@ angular.module('controllers.voiceController', []).
                             case "up":
                                 webviewService.scrollUp();
                               break;
-                            case "goto":
-                                 
+                            case "goto":   
                                  action.url = htmlService.getURL(action.url);
                                  webviewService.navigateTo(action.url);
                                  var promise = $http.get(action.url).then(function (response) {
@@ -152,7 +152,16 @@ angular.module('controllers.voiceController', []).
                                 $scope.$apply(function () {
                                     $scope.showStartScreen = false;
                                 });
-                                 break;    
+                                 break;   
+                            case "search":
+                                 webviewService.navigateTo(action.url);
+                                 var promise = $http.get(action.url).then(function (response) {
+                                         $scope.pageLinks = htmlService.getAllLinks(response.data);
+                                  });
+                                $scope.$apply(function () {
+                                    $scope.showStartScreen = false;
+                                });
+                                break;
                             case "go":
                                  webviewService.navigateTo($scope.url);
                                  var promise = $http.get($scope.url).then(function (response) {
