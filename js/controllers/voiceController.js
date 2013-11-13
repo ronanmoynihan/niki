@@ -141,14 +141,23 @@ angular.module('controllers.voiceController', []).
                                 webviewService.scrollDown();
                               break;
                              case "back":
-                                webviewService.goBack();;
+                                webviewService.goBack();
                               break;
                             case "up":
                                 webviewService.scrollUp();
-                             //
                               break;
-                            case "go":
+                            case "goto":
                                 
+                                // Need to clean up the URL for http etc....
+                                 webviewService.navigateTo(action.url);
+                                 var promise = $http.get(action.url).then(function (response) {
+                                         $scope.pageLinks = htmlService.getAllLinks(response.data);
+                                  });
+                                $scope.$apply(function () {
+                                    $scope.showStartScreen = false;
+                                });
+                                 break;    
+                            case "go":
                                  webviewService.navigateTo($scope.url);
                                  var promise = $http.get($scope.url).then(function (response) {
                                          $scope.pageLinks = htmlService.getAllLinks(response.data);

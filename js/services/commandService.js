@@ -21,6 +21,18 @@ angular.module('services.commandService', []).
             1. Go to xxxx
             2. Search xxx
         */
+        if (typeof String.prototype.startsWith != 'function') {
+              // see below for better implementation!
+              String.prototype.startsWith = function (str){
+                return this.indexOf(str) == 0;
+              };
+            }
+        
+        if(input.text.startsWith('go to')){
+           input.paramater = input.text.substr(5,input.text.length);
+           input.text = "go to";
+           console.log(input.paramater);
+        }
             
         
         var action = {
@@ -63,7 +75,11 @@ angular.module('services.commandService', []).
              case "bach":
              case "black":
                 action.commandText = "back";
-                break;   
+                break;  
+            case "go to":
+                action.commandText = "goto";
+                action.url = input.paramater;
+                break;
             default:
                 if(isNaN(speechInput)){
                     action.commandText = "unknown";
