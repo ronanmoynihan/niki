@@ -30,11 +30,10 @@ angular.module('services.commandService', []).
                 
             case "goal":
             case "go":
-                action.type = "command";
                 action.commandText = "go";
                 break;
             case "number":
-                action.type = "number";
+                action.commandText = "number";
                 action.number = speechInput;
                 break;
             case "numbers on":
@@ -82,7 +81,7 @@ angular.module('services.commandService', []).
                     console.log("closest matched url: " + action.url);
                 }
                 else{
-                 action.type = "number";
+                 action.commandText = "number";
                  action.number = speechInput;
                 }
                          

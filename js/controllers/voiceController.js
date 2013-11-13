@@ -18,9 +18,7 @@ angular.module('controllers.voiceController', []).
      
                     webviewService.navigateTo(url);
                     var promise = $http.get(url).then(function (response) {
-                                $scope.pageLinks = htmlService.getAllLinks(response.data);
-                                console.log($scope.pageLinks);
-                        
+                                    $scope.pageLinks = htmlService.getAllLinks(response.data);
                                   });
                     };
               
@@ -96,7 +94,6 @@ angular.module('controllers.voiceController', []).
                 // on end
                 recognition.onend = function() {
                     
-                    
                     var date = new Date(event.timeStamp);
                     console.log('end webkitSpeechRecognition: ' + date.toString('yyyy-MM-dd') );  
             
@@ -120,16 +117,15 @@ angular.module('controllers.voiceController', []).
                       var speechInput = event.results[i][0].transcript;     
                       var action = commandService.getAction(speechInput,$scope.pageLinks,$scope.url);
                         
-                      // Execute the Action    
-                      if(action.type=="number"){
-                         webviewService.triggerLinkClick(action.number);
-                         var promise = $http.get($scope.url).then(function (response) {
-                                          //webviewService.showNumbers(); 
-                                  });
-                      }
-                        
+                      
                       switch(action.commandText)
                         {
+                            case "number":
+                                webviewService.triggerLinkClick(action.number);
+                                var promise = $http.get($scope.url).then(function (response) {
+                                        $scope.pageLinks = htmlService.getAllLinks(response.data);
+                                      });
+                                break;
                             case "unknown":
                                 webviewService.navigateTo("http://"+action.url);
                                 break;
@@ -155,7 +151,7 @@ angular.module('controllers.voiceController', []).
                                 
                                  webviewService.navigateTo($scope.url);
                                  var promise = $http.get($scope.url).then(function (response) {
-                                         // webviewService.showNumbers(); 
+                                         $scope.pageLinks = htmlService.getAllLinks(response.data);
                                   });
                                  break;                                         
                             default:
