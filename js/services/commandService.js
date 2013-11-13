@@ -53,6 +53,7 @@ angular.module('services.commandService', []).
                 action.number = speechInput;
                 break;
             case "numbers on":
+            case "number on":
                 action.commandText = "shownumbers";
                 break;   
              case "numbers off":
@@ -65,15 +66,18 @@ angular.module('services.commandService', []).
             case "scott up":
             case "scroll of":
             case "grown up":
+            case "skull":
                 action.commandText = "up";
                 break;   
              case "scroll down":
+             case "school down":
                 action.commandText = "down";
                 break;    
              case "back":
              case "bach":
              case "black":
              case "pack":
+             case "bike":
                 action.commandText = "back";
                 break;  
             case "go to":

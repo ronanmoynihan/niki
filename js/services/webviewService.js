@@ -28,7 +28,6 @@ angular.module('services.webviewService', []).
       
       
       triggerLinkClick: function(linkNumber){    
-            // var webview = document.querySelector('webview');
              webview.executeScript({code: "document.links[" + linkNumber+ "].click()"});     
       },
       
@@ -45,8 +44,12 @@ angular.module('services.webviewService', []).
         webview.back();
       },
       
+      getURL: function(){
+          return webview.src;
+      },
+      
      navigateTo: function (url) {
-        document.querySelector('webview').src = url;  
+        webview.src = url;  
      },
       
     initializeWebview: function () {

@@ -6,6 +6,7 @@ angular.module('controllers.voiceController', []).
  controller('voiceController', ['$scope','$http','$timeout','speechService','htmlService','commandService','webviewService',
             function($scope,$http,$timeout, speechService, htmlService,commandService, webviewService) {
                 
+          
             $scope.go = function(){
 
                     $scope.showStartScreen = false;
@@ -28,6 +29,24 @@ angular.module('controllers.voiceController', []).
                 $scope.microphoneurl = "css/images/microphone.gif";
                 console.log('init function');
                 $scope.speechInput = "Listening...";
+                
+                /* Used to update pageLinks if the URL changes*/
+                var updatePageLinks = function() {
+                                
+                    var newURL = document.querySelector('#location').value;
+                    if(newURL!=$scope.url){
+                        
+                        console.log('page links should be updated now');
+                        var promise = $http.get(newURL).then(function (response) {
+                                         $scope.pageLinks = htmlService.getAllLinks(response.data);
+                                         $scope.url = newURL;
+                                      });
+                    }
+                        
+                };
+                
+                setInterval(updatePageLinks,1000);
+                /* End of pageLinks update code.*/
                   
                 webviewService.initializeWebview();
                 
@@ -119,9 +138,6 @@ angular.module('controllers.voiceController', []).
                         {
                             case "number":
                                 webviewService.triggerLinkClick(action.number);
-                                var promise = $http.get($scope.url).then(function (response) {
-                                        $scope.pageLinks = htmlService.getAllLinks(response.data);
-                                      });
                                 break;
                             case "unknown":
                                 action.url = htmlService.getURL(action.url);
@@ -147,24 +163,10 @@ angular.module('controllers.voiceController', []).
                             case "goto":   
                                  action.url = htmlService.getURL(action.url);
                                  webviewService.navigateTo(action.url);
-                                 var promise = $http.get(action.url).then(function (response) {
-                                         $scope.pageLinks = htmlService.getAllLinks(response.data);
-                                  });
-                                $scope.$apply(function () {
-                                    $scope.showStartScreen = false;
-                                    $scope.url = action.url;
-                                });
                                  break;   
                             case "search":
-                                 webviewService.navigateTo(action.url);
-                                 var promise = $http.get(action.url).then(function (response) {
-                                         $scope.pageLinks = htmlService.getAllLinks(response.data);
-                                  });
-                                $scope.$apply(function () {
-                                    $scope.showStartScreen = false;
-                                    $scope.url = action.url;
-                                });
-                                break;
+                                 webviewService.navigateTo(action.url);   
+                                 break;
                                                           
                             default:
                              //
