@@ -72,6 +72,7 @@ angular.module('services.commandService', []).
                 break;   
              case "scroll down":
              case "school down":
+             case "girl down":
                 action.commandText = "down";
                 break;    
              case "back":
