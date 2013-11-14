@@ -88,6 +88,9 @@ angular.module('services.commandService', []).
                 action.commandText = "search";
                 action.url = "http://www.google.com/search?q=" + input.paramater;
                 break;
+            case "help":
+                action.commandText = "help";
+                break;
             default:
                 if(isNaN(speechInput)){
                     action.commandText = "unknown";

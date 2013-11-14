@@ -19,6 +19,11 @@ angular.module('controllers.voiceController', []).
                                     $scope.pageLinks = htmlService.getAllLinks(response.data);
                                   });
                     };
+                
+            $scope.showStartScreen = function(){
+                $scope.showStartScreen = true;
+                console.log('showing startup screen');
+            };
               
             $scope.init = function(){
                 
@@ -163,11 +168,20 @@ angular.module('controllers.voiceController', []).
                             case "goto":   
                                  action.url = htmlService.getURL(action.url);
                                  webviewService.navigateTo(action.url);
+                                 $scope.$apply(function () {
+                                    $scope.showStartScreen = false;
+                                  });
                                  break;   
                             case "search":
                                  webviewService.navigateTo(action.url);   
+                                 $scope.$apply(function () {
+                                    $scope.showStartScreen = false;
+                                  });
                                  break;
-                                                          
+                            case "help":
+                                $scope.$apply(function () {
+                                    $scope.showStartScreen = true;
+                                });
                             default:
                              //
                         }
