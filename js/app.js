@@ -6,8 +6,7 @@ angular.module('myApp', [
     'services.htmlService',
     'services.commandService',
     'services.webviewService',
-    'controllers.voiceController',
-    'controllers.textController'
+    'controllers.voiceController'
 ]).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/mainContent', {templateUrl: 'partials/mainContent.html', controller: 'MyCtrl1'});
