@@ -1,7 +1,7 @@
 'use strict';
 
 var webview = document.querySelector('webview');
-
+window.onresize = doLayout;
 
 /* Webview Service */
 
@@ -94,15 +94,7 @@ angular.module('services.webviewService', []).
             document.querySelector('webview').executeScript({file: "js/scroll.js"});
             //  webview.executeScript({code: " document.getElementById('google-search-searchterm').value = 'dd'"}); 
                 
-             var controls = document.querySelector('#controls');
-          var controlsHeight = controls.offsetHeight;
-          var windowWidth = document.documentElement.clientWidth;
-          var windowHeight = document.documentElement.clientHeight;
-          var webviewWidth = windowWidth;
-          var webviewHeight = windowHeight - controlsHeight;
-        
-          webview.style.width = webviewWidth + 'px';
-          webview.style.height = webviewHeight + 'px';  
+            doLayout();
         
         }
           
@@ -156,3 +148,16 @@ angular.module('services.webviewService', []).
   }).
   value('version', '0.1');
 
+
+// Helper to resize layout.
+function doLayout() {
+   var controls = document.querySelector('#controls');
+          var controlsHeight = controls.offsetHeight;
+          var windowWidth = document.documentElement.clientWidth;
+          var windowHeight = document.documentElement.clientHeight;
+          var webviewWidth = windowWidth;
+          var webviewHeight = windowHeight - controlsHeight;
+        
+          webview.style.width = webviewWidth + 'px';
+          webview.style.height = webviewHeight + 'px';  
+}

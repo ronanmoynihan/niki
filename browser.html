@@ -111,14 +111,14 @@
                                         <div class="row-fluid">
                                             <div>
                                                 <span>link numbers:</span>
-                                                <span id="showNumbers" class="label" ng-class="{labelon:numbersStatus}">{{numbersStatus}}</span>
+                                                <span id="showNumbers" class="label" ng-class="{labelon: numbersStatus=='on',labeloff:numbersStatus=='off'}">{{numbersStatus}}</span>
                                             </div>
                                         </div>
                                         <div class="row-fluid">
                                             <div>
                                                 <!--button ng-click="scroll()">scroll</button-->
                                                 <span>use niki in commands:</span>
-                                                <span id="showNumbers" class="label">off</span>
+                                                <span id="showNumbers" class="label" ng-class="{labelon: useNameinCommands=='on',labeloff:useNameinCommands=='off'}">{{useNameinCommands}}</span>
                                             </div>
                                         </div>
                                         <div class="row-fluid" style="font-size:smaller;color:gray;">

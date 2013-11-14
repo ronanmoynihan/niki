@@ -30,6 +30,7 @@ angular.module('controllers.voiceController', []).
                 $scope.showStartScreen = true;
                 $scope.micStatus = "off";
                 $scope.numbersStatus = "on";
+                $scope.useNameinCommands = "off";
                 
                 $scope.microphoneurl = "css/images/microphone.gif";
                 console.log('init function');
@@ -93,7 +94,7 @@ angular.module('controllers.voiceController', []).
                         
                         $scope.$apply(function () {
                                     $scope.micStatus = "off";
-                                    $scope.speechInput = "Listening";
+                                    $scope.speechInput = "Listening...";
                               });
                               
                         console.log('error - no speech');}
