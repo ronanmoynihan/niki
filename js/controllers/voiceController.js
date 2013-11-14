@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('controllers.voiceController', []).
- controller('voiceController', ['$scope','$http','$timeout','speechService','htmlService','commandService','webviewService',
-            function($scope,$http,$timeout, speechService, htmlService,commandService, webviewService) {
+ controller('voiceController', ['$scope','$http','$timeout','htmlService','commandService','webviewService',
+            function($scope,$http,$timeout,htmlService,commandService, webviewService) {
                 
           
             $scope.go = function(){

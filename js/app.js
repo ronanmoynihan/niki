@@ -3,12 +3,9 @@
 
 // Declare app level module which depends on filters, and services
 angular.module('myApp', [
-    'myApp.filters', 
-    'services.speechService',
     'services.htmlService',
     'services.commandService',
     'services.webviewService',
-    'myApp.directives', 
     'controllers.voiceController',
     'controllers.textController'
 ]).
@@ -16,7 +13,7 @@ angular.module('myApp', [
     $routeProvider.when('/mainContent', {templateUrl: 'partials/mainContent.html', controller: 'MyCtrl1'});
     $routeProvider.otherwise({redirectTo: '/view1'});
   }]).
-  run(function($rootScope, speechService, htmlService) {
+  run(function($rootScope) {
       
       $rootScope.url = "http://www.bbc.com/";
   });

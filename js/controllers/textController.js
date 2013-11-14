@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('controllers.textController', []).
- controller('textController', ['$scope','$http','speechService','htmlService','commandService','webviewService',
-            function($scope,$http, speechService, htmlService,commandService, webviewService) {
+ controller('textController', ['$scope','$http','htmlService','commandService','webviewService',
+            function($scope,$http, htmlService,commandService, webviewService) {
                 
          $scope.submit = function(){   
                 
