@@ -30,7 +30,7 @@ angular.module('controllers.voiceController', []).
                 $scope.showStartScreen = true;
                 $scope.micStatus = "off";
                 $scope.numbersStatus = "on";
-                $scope.useNameinCommands = "off";
+                $scope.niki = "on";
                 
                 $scope.microphoneurl = "css/images/microphone.gif";
                 console.log('init function');
@@ -137,7 +137,7 @@ angular.module('controllers.voiceController', []).
                         
                       // call a service which will determine what action to take.
                       var speechInput = event.results[i][0].transcript;     
-                      var action = commandService.getAction(speechInput,$scope.pageLinks,$scope.url);
+                      var action = commandService.getAction(speechInput,$scope.pageLinks,$scope.url,$scope.niki);
                         
                       
                       switch(action.commandText)
@@ -152,10 +152,16 @@ angular.module('controllers.voiceController', []).
                             case "shownumbers":
                                webviewService.showNumbers();
                                repeater = setInterval(showNumbers,1000);
+                                $scope.$apply(function () {
+                                    $scope.numbersStatus = "on";
+                                  });
                               break;
                             case "hidenumbers":
                                 clearInterval(repeater);
                                 webviewService.hideNumbers();
+                                $scope.$apply(function () {
+                                    $scope.numbersStatus = "off";
+                                  });
                               break;
                             case "down":
                                 webviewService.scrollDown();
@@ -183,6 +189,17 @@ angular.module('controllers.voiceController', []).
                                 $scope.$apply(function () {
                                     $scope.showStartScreen = true;
                                 });
+                                break;
+                            case "nikion":
+                                $scope.$apply(function () {
+                                    $scope.niki = "on";
+                                });
+                                break;
+                             case "nikioff":
+                                $scope.$apply(function () {
+                                    $scope.niki = "off";
+                                });
+                                break;
                             default:
                              //
                         }

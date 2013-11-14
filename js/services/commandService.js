@@ -8,7 +8,7 @@
 angular.module('services.commandService', []).
   value('commandService', {
     
-    getAction: function(speechInput,pageLinks,url) {
+    getAction: function(speechInput,pageLinks,url,nikiStatus) {
         
         speechInput = speechInput.trim().toLowerCase();
              
@@ -46,6 +46,7 @@ angular.module('services.commandService', []).
                 commandText: ""
             }    
         
+       
         switch(input.text){
                 
             case "number":
@@ -91,8 +92,21 @@ angular.module('services.commandService', []).
             case "help":
                 action.commandText = "help";
                 break;
+            case "nikki on":
+                action.commandText = "nikion";
+                nikiStatus = "on";
+                break;
+             case "nikki off":
+             case "nikki of":
+             case "nicki off":
+             case "nicki of":
+                action.commandText = "nikioff";
+                break;
+            case "noaction":
+                action.commandText = "noaction";
+                break;
             default:
-                if(isNaN(speechInput)){
+                if(isNaN(speechInput) && pageLinks!=null){
                     action.commandText = "unknown";
                     
                                 var options = {
@@ -129,6 +143,10 @@ angular.module('services.commandService', []).
                  action.number = speechInput;
                 }
                          
+        }
+        
+        if(nikiStatus=="off"){
+            action.commandText = "noaction";
         }
         
         return action;
