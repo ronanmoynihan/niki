@@ -5507,11 +5507,6 @@ a.thumbnail:focus {
      background-color: #999999;
 }
 
-.label {
-  -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
-          border-radius: 3px;
-}
 
 .badge {
   padding-right: 9px;
