@@ -19,6 +19,7 @@
     "http://*/",
     "https://*/",
     "webview",
-    "audioCapture"
+    "audioCapture",
+    "storage"
   ]
 }

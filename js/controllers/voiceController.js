@@ -5,8 +5,25 @@
 angular.module('controllers.voiceController', []).
  controller('voiceController', ['$scope','$http','$timeout','htmlService','commandService','webviewService',
             function($scope,$http,$timeout,htmlService,commandService, webviewService) {
+               
+            var service = analytics.getService('niki');
+            service.getConfig().addCallback(
+                function(config) {
+                  config.setTrackingPermitted($scope.analytics);
+                });
                 
+            var tracker = service.getTracker('UA-45746229-1');
+             
           
+            $scope.analyticsChanged = function(){
+                console.log('changed: ' + $scope.analytics);
+                 service.getConfig().addCallback(
+                    function(config) {
+                        config.setTrackingPermitted($scope.analytics);
+                    });
+                };
+                
+                
             $scope.go = function(){
 
                     $scope.showStartScreen = false;
@@ -18,6 +35,9 @@ angular.module('controllers.voiceController', []).
                     var promise = $http.get(url).then(function (response) {
                                     $scope.pageLinks = htmlService.getAllLinks(response.data);
                                   });
+                
+                    tracker.sendEvent('ui_action', 'formsubmit', 'go');
+                
                     };
                 
             $scope.showStartScreen = function(){
@@ -31,6 +51,7 @@ angular.module('controllers.voiceController', []).
                 $scope.micStatus = "off";
                 $scope.numbersStatus = "on";
                 $scope.niki = "on";
+                $scope.analytics = true;
                 
                 $scope.microphoneurl = "css/images/microphone.gif";
                 console.log('init function');
@@ -178,12 +199,14 @@ angular.module('controllers.voiceController', []).
                                  $scope.$apply(function () {
                                     $scope.showStartScreen = false;
                                   });
+                                 tracker.sendEvent('ui_action', 'voice', 'goto');
                                  break;   
                             case "search":
                                  webviewService.navigateTo(action.url);   
                                  $scope.$apply(function () {
                                     $scope.showStartScreen = false;
                                   });
+                                 tracker.sendEvent('ui_action', 'voice', 'search');
                                  break;
                             case "help":
                                 $scope.$apply(function () {

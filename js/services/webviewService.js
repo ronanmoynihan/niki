@@ -141,7 +141,7 @@ angular.module('services.webviewService', []).
       webview.addEventListener('loadabort', handleLoadAbort);
       webview.addEventListener('loadredirect', handleLoadRedirect);
       webview.addEventListener('loadcommit', handleLoadCommit);
-     },
+     }
       
 
       

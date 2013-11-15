@@ -198,7 +198,17 @@
                                           </table>
                                     </div>
                              </div>
-                            For feedback email voice@niki.io
+                             <div class="row-fluid">
+                                  <div class="span8">
+                                        For feedback email voice@niki.io
+                                  </div>
+                             </div>
+                             <div class="row-fluid">
+                                    <div class="span8">
+                                        <label><input id="analytics" ng-model="analytics" ng-change="analyticsChanged()" type="checkbox" />Send anonymous usage data.</label>
+                                    </div>
+                            </div>
+                            
                         </div>
                    </div>
                 
@@ -207,14 +217,17 @@
       
        
       
-      
+       
         <script src="lib/angular/angular.js"></script>
         <script src="js/app.js"></script>
+        
         <script src="js/services/htmlService.js"></script>
         <script src="js/services/commandService.js"></script>
         <script src="js/services/webviewService.js"></script>
         <script src="js/controllers/voiceController.js"></script>
-              
+        
+        <!--script src="default.js"></script-->
+        <script src="lib/gab.js"></script>
         <script src="lib/jquery.min.js"></script>
         <script src="lib/fuse.js"></script>
 
