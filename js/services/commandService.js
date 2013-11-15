@@ -67,6 +67,7 @@ angular.module('services.commandService', []).
             case "scott up":
             case "scroll of":
             case "grown up":
+            case "grow up":
             case "skull":
                 action.commandText = "up";
                 break;   
