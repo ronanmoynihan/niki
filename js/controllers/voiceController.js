@@ -12,7 +12,7 @@ angular.module('controllers.voiceController', []).
                   config.setTrackingPermitted($scope.analytics);
                 });
                 
-            var tracker = service.getTracker('UA-45746229-1');
+            var tracker = service.getTracker('xx-xxxxxxxx-x');
              
           
             $scope.analyticsChanged = function(){
