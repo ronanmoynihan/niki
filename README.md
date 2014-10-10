@@ -10,4 +10,4 @@ Use voice commands to click on links, go to different sites, search and scroll p
 
 Turn numbers on to have a unique number placed next to each link and say that number to have the link clicked.
 
-![Alt text](https://raw.githubusercontent.com/ronanmoynihan/niki/master/assets/s1.png?raw=true "Optional Title")
+![Alt text](http://a3.mzstatic.com/eu/r30/Purple/v4/ab/39/01/ab390186-20dd-063c-1b37-47e5448e4b88/screen480x480.jpeg?raw=true "Optional Title")
